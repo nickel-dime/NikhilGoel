@@ -7,13 +7,16 @@
   min-height: 100vh;
 }
 
+.header {
+  font-size: 25px;
+}
+
 .description {
-  display: inherit;
-  justify-content: inherit;
+  display: block;
+  justify-content: normal;
   align-items: inherit;
+  text-align: center;
   font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
 }
@@ -22,7 +25,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .description p {
