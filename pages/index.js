@@ -16,17 +16,17 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.header}>
-          THIS IS AMERICA
+          THIS IS LETTUCE SRIKAR
         </div>
-        <Image src={'/static/images/thisisamerica.png'} width={300} height={400} alt="This is America cover">
+        <Image src={'/static/images/lettucesrikar.png'} width={300} height={400} alt="This is America cover">
 
         </Image>
         <div className={styles.description}>
-          <div>
-            CHILDISH GAMBINO
+          <div className={styles.boxHeader}>
+            WANTED BY FBI
           </div>
           <div style={{ padding: '10px'}}>
-            10.10.23
+            1-800-CALLFBI
           </div>
         </div>
       </main>

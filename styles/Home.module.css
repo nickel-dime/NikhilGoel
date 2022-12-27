@@ -11,6 +11,10 @@
   font-size: 25px;
 }
 
+.boxHeader {
+  font-size: 17px;
+}
+
 .description {
   display: block;
   justify-content: normal;
