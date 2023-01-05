@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
@@ -16,7 +16,7 @@ const data = [
   {
     header: "THIS IS AMERICA",
     image: thisisamerica,
-    bottomheader: "CHILDISH GAMBINO",
+    bottomHeader: "CHILDISH GAMBINO",
     bottomText: "10.10.2023",
   },
 ];
@@ -26,9 +26,16 @@ function classNames(...classes) {
 }
 
 export default function Home() {
-  const [gambinoEnabled, setGamibnoEnabled] = useState(false);
+  const [randomNumber, setRandomNumber] = useState(0);
 
-  console.log(gambinoEnabled);
+  useEffect(() => {
+    generateRandomNumber();
+  }, []);
+
+  const generateRandomNumber = () => {
+    const randomNumber = Math.floor(Math.random() * data.length);
+    setRandomNumber(randomNumber);
+  };
 
   return (
     <>
@@ -41,17 +48,19 @@ export default function Home() {
       <main>
         <div className="relative flex container mx-auto h-screen place-items-center justify-center">
           <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
-            <div className="basis-1/12 mb-8 text-2xl">
-              THIS IS LETTUCE SRIKAR
+            <div className="basis-1/12 text-2xl">
+              {data[randomNumber].header}
             </div>
             <Image
-              src={lettucesrikar}
+              src={data[randomNumber].image}
+              height={150}
+              width={250}
               alt="This is America cover"
-              className="aspect-auto w-72"
+              className="aspect-[3/4]"
             ></Image>
-            <div className="basis-1/4 flex flex-col items-center justify-end">
-              <div className="text-lg">WANTED BY FBI</div>
-              <div className="">1-800-CALLFBI</div>
+            <div className="basis-1/4 m-4 flex flex-col items-center justify-end">
+              <div className="text-lg">{data[randomNumber].bottomHeader}</div>
+              <div className="">{data[randomNumber].bottomText}</div>
             </div>
           </div>
         </div>
