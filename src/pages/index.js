@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
-import bua from "@/images/bua.PNG";
+// import bua from "@/images/bua.PNG";
 
 const data = [
   {
