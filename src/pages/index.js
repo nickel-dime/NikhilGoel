@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { useEffect, useState } from "react";
-import { Switch } from "@headlessui/react";
 import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
+import bua from "@/images/bua.PNG";
 
 const data = [
   {
@@ -21,10 +20,6 @@ const data = [
   },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Home() {
   const [randomNumber, setRandomNumber] = useState(0);
 
@@ -40,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nikhil</title>
+        <title>Nikhil Goel</title>
         <meta name="description" content="Personal website for Nikhil Goel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -48,20 +43,14 @@ export default function Home() {
       <main>
         <div className="relative flex container mx-auto h-screen place-items-center justify-center">
           <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
-            <div className="basis-1/12 text-2xl">
-              {data[randomNumber].header}
-            </div>
             <Image
-              src={data[randomNumber].image}
-              height={150}
-              width={250}
+              src={bua}
+              height={300}
+              width={500}
               alt="This is America cover"
               className="aspect-[3/4]"
             ></Image>
-            <div className="basis-1/4 m-4 flex flex-col items-center justify-end">
-              <div className="text-lg">{data[randomNumber].bottomHeader}</div>
-              <div className="">{data[randomNumber].bottomText}</div>
-            </div>
+            <div>your clue resides with them</div>
           </div>
         </div>
       </main>
