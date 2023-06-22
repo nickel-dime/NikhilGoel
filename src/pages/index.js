@@ -44,7 +44,7 @@ export default function Home() {
         <div className="relative flex container mx-auto h-screen place-items-center justify-center">
           <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
             <Image
-              src={thisisamerica}
+              src={"/bua.png"}
               height={300}
               width={500}
               alt="This is America cover"
