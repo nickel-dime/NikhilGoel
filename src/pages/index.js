@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
-// import bua from "@/images/bua.PNG";
+import bua from "@/images/bua.png";
 
 const data = [
   {
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="relative flex container mx-auto h-screen place-items-center justify-center">
           <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
             <Image
-              src={"/bua.png"}
+              src={bua}
               height={300}
               width={500}
               alt="This is America cover"
