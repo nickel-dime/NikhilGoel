@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
 import bua from "@/images/bua.png";
+import { Container } from "@/components/Container";
 
 const data = [
   {
@@ -21,17 +22,6 @@ const data = [
 ];
 
 export default function Home() {
-  const [randomNumber, setRandomNumber] = useState(0);
-
-  useEffect(() => {
-    generateRandomNumber();
-  }, []);
-
-  const generateRandomNumber = () => {
-    const randomNumber = Math.floor(Math.random() * data.length);
-    setRandomNumber(randomNumber);
-  };
-
   return (
     <>
       <Head>
@@ -40,20 +30,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className="relative flex container mx-auto h-screen place-items-center justify-center">
-          <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
-            <Image
-              src={bua}
-              height={300}
-              width={500}
-              alt="This is America cover"
-              className="aspect-[3/4]"
-            ></Image>
-            <div>your clue resides with them</div>
+      <Container>
+        <div className="indexPage content-center">
+          <div className="max-w-[550px] m-10 pt-40 pb-40">
+            <section>
+              <div className="flex text-7xl mb-10">Hello! I am Nikhil!</div>
+            </section>
+            <section className="">
+              <div className="mb-3">
+                I am a software engineer @Northeastern staring my fourth year.
+                I'm passionate about building human centered software. <br></br>
+              </div>
+              <div className="">
+                Previously @Cactivate, @Scout, @GotBot, &nbsp;
+                <span>
+                  <a
+                    href="https://palantir.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Plan Ceibal
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                .
+              </div>
+            </section>
           </div>
         </div>
-      </main>
+      </Container>
     </>
   );
 }
