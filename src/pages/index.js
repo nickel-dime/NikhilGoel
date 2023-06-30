@@ -31,33 +31,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="indexPage content-center">
-          <div className="max-w-[550px] m-10 pt-40 pb-40">
-            <section>
-              <div className="flex text-7xl mb-10">Hello! I am Nikhil!</div>
-            </section>
-            <section className="">
-              <div className="mb-3">
-                I am a software engineer @Northeastern staring my fourth year.
-                I'm passionate about building human centered software. <br></br>
-              </div>
-              <div className="">
-                Previously @Cactivate, @Scout, @GotBot, &nbsp;
-                <span>
-                  <a
-                    href="https://palantir.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Plan Ceibal
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
-                </span>
-                .
-              </div>
-            </section>
-          </div>
+        <div className="max-w-[550px] ">
+          <section>
+            <div className="flex mt-20 text-7xl">Hello! I am Nikhil!</div>
+          </section>
+          <section className="mt-5">
+            <div className="">
+              I am a software engineer @Northeastern staring my fourth year. I'm
+              passionate about building human centered software. <br></br>
+            </div>
+            <div className="mt-3">
+              Previously @Cactivate, @Scout, @GotBot, @Plan Ceibal
+              <span>
+                <a
+                  href="https://palantir.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline transition-all text-primaryText"
+                >
+                  @Palantir
+                </a>
+                <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+              </span>
+            </div>
+            <div className="relative">HI</div>
+          </section>
         </div>
       </Container>
     </>
