@@ -15,17 +15,17 @@ function NavLink({ href, children }) {
 
 export function Footer() {
   return (
-    <footer className="mb-10">
+    <footer className="">
       <Container.Outer>
-        <div className="pt-10">
+        <div className="pb-10">
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div className="flex gap-6 text-sm font-medium text-black">
+              <div className="flex gap-6 text-sm font-medium ">
                 <NavLink href="/thoughts">Resume</NavLink>
                 <NavLink href="/about">LinkedIn</NavLink>
                 <NavLink href="/projects">Github</NavLink>
               </div>
-              <p className="text-sm text-black">Made with ❤️ by Nikhil Goel</p>
+              <p className="text-sm ">Made with ❤️ by Nikhil Goel</p>
             </div>
           </Container.Inner>
         </div>

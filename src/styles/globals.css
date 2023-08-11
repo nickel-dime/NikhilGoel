@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .testStyle::before {
-  background-color: #e0eaf8;
-  filter: url(#noiseFilter);
+  background-color: #fcfcfc;
+  /* filter: url(#noiseFilter); */
   content: "";
   position: absolute;
   top: 0;
@@ -22,15 +22,50 @@
   position: relative;
 }
 
-.indexPage {
-  background: linear-gradient(to right, #151515 1px, transparent 1px) 0 0,
-    linear-gradient(to right, #151515 1px, transparent 1px) 0 100%,
-    linear-gradient(to left, #151515 1px, transparent 1px) 100% 0,
-    linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%,
-    linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0,
-    linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0,
-    linear-gradient(to top, #151515 1px, transparent 1px) 0 100%,
-    linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
+@layer components {
+  .indexPage {
+    background: linear-gradient(to right, #ffff 1px, transparent 1px) 0 0,
+      linear-gradient(to right, #151515 1px, transparent 1px) 0 100%,
+      linear-gradient(to left, #151515 1px, transparent 1px) 100% 0,
+      linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%,
+      linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0,
+      linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0,
+      linear-gradient(to top, #151515 1px, transparent 1px) 0 100%,
+      linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+  }
+}
+
+.spin {
+  display: block;
+  height: 100%;
+  padding-left: 15px;
+  animation: spin_words 6s infinite;
+}
+@keyframes spin_words {
+  10% {
+    transform: translateY(-112%);
+  }
+  25% {
+    transform: translateY(-100%);
+  }
+  35% {
+    transform: translateY(-212%);
+  }
+  50% {
+    transform: translateY(-200%);
+  }
+  60% {
+    transform: translateY(-312%);
+  }
+  75% {
+    transform: translateY(-300%);
+  }
+  85% {
+    transform: translateY(-412%);
+  }
+  100% {
+    transform: translateY(-400%);
+  }
 }

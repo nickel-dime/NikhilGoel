@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
         <filter id="noiseFilter">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.5"
+            baseFrequency="0.7"
             stitchTiles="stitch"
           />
           <feColorMatrix
@@ -23,12 +23,17 @@ export default function App({ Component, pageProps }) {
         </filter>
       </svg>
 
-      <div className="testStyle overflow-hidden ">
-        <div className="module-inside h-screen flex flex-col justify-between ">
+      <div className="testStyle ">
+        {/* <div className="fixed inset-0 flex justify-center sm:px-8">
+          <div className="flex w-full max-w-7xl lg:px-8">
+            <div className="w-full" />
+          </div>
+        </div> */}
+        <div className="module-inside flex flex-col min-h-screen text-black">
           <div className="">
             <Header></Header>
           </div>
-          <main className="">
+          <main className="grow">
             <Component {...pageProps} />
           </main>
           <div className="">

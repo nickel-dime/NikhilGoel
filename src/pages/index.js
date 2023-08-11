@@ -31,18 +31,91 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="indexPage content-center">
-          <div className="max-w-[550px] m-10 pt-40 pb-40">
-            <section>
-              <div className="flex text-7xl mb-10">Hello! I am Nikhil!</div>
-            </section>
-            <section className="">
-              <div className="mb-3">
-                I am a software engineer @Northeastern staring my fourth year.
-                I'm passionate about building human centered software. <br></br>
+        <div className=" content-center">
+          <div className="md:max-w-[800px] max-w-[550px] my-10 pt-20 pb-40">
+            <section className="flex h-16 md:h-20 md:mb-10">
+              <div className="text-4xl md:text-6xl sm:text-4xl">Hello</div>
+              <div className="text-4xl md:text-6xl sm:text-4xl">
+                {" "}
+                ,&nbsp;I am a
               </div>
-              <div className="">
-                Previously @Cactivate, @Scout, @GotBot, &nbsp;
+              <div className="text-4xl md:text-6xl font-bold sm:text-4xl shrink overflow-hidden">
+                <span className="spin"></span>
+                <span className="spin">student</span>
+                <span className="spin">traveler</span>
+                <span className="spin">developer</span>
+                <span className="spin">designer</span>
+              </div>
+            </section>
+            <section className="break-words">
+              <div className="mb-3 max-w-xl leading-relaxed">
+                I'm a software engineer{" "}
+                <span>
+                  <a
+                    href="https://northeastern.edu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Northeastern
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>{" "}
+                staring my fourth year. I'm passionate about building human
+                centered software. I love to combine my passions for sports and
+                music with well built and designed software. Feel free to email
+                me at any time, I'm always happy to get a coffee! <br></br>
+              </div>
+              <div className="max-w-xl leading-relaxed mt-10">
+                Currently Co-Founder{" "}
+                <span>
+                  <a
+                    href="https://palantir.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Fireplace
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                . Previously Developer{" "}
+                <span>
+                  <a
+                    href="https://palantir.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Cactivate
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                , Project Lead{" "}
+                <span>
+                  <a
+                    href="https://palantir.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Scout
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                , Intern{" "}
+                <span>
+                  <a
+                    href="https://palantir.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @GotBot
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                ,{" &"} Intern{" "}
                 <span>
                   <a
                     href="https://palantir.com"
