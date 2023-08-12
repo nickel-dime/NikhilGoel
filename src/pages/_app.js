@@ -23,13 +23,13 @@ export default function App({ Component, pageProps }) {
         </filter>
       </svg>
 
-      <div className="testStyle ">
+      <div className="testStyle font-sans">
         {/* <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
             <div className="w-full" />
           </div>
         </div> */}
-        <div className="module-inside flex flex-col min-h-screen text-black">
+        <div className="module-inside flex flex-col font-fira min-h-screen text-slate-900 bg-[#FFFAED]">
           <div className="">
             <Header></Header>
           </div>
