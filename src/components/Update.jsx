@@ -5,10 +5,12 @@ export function Update({ text, icon }) {
   return (
     <>
       <button className="flex items-center space-x-4 hover:bg-[#e3d5b3] p-3 rounded-md">
-        <div className="flex-none font-medium">
+        <div className="sm:flex-none font-medium">
           <div className="flex align-middle justify-center items-center">
             <div className="">{icon}</div>
-            <div className="mt-1 ml-3">{text}</div>
+            <div className="mt-1 ml-3 text-sm sm:text-base text-left w-[180px] sm:w-auto">
+              {text}
+            </div>
           </div>
           {/* <div className="text-slate-900 whitespace-pre-wrap flex-shrink  flex justify-center ml-3 max-w-sm text-md text-clip">
             {text}
@@ -16,7 +18,7 @@ export function Update({ text, icon }) {
           {/* {text} */}
         </div>
         <div className="w-full border-t border-gray-800 border-dotted shrink mt-1"></div>
-        <div className="flex-none font-mono text-quaternary">07/2020</div>
+        <div className="flex-none font-mono text-quaternary">07/20</div>
       </button>
     </>
   );
