@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  if (router.pathname == "/studio") {
+  if (router.pathname.includes("studio")) {
     return (
       <>
         <svg className="hidden">
@@ -41,6 +41,7 @@ export default function App({ Component, pageProps }) {
       </>
     );
   }
+
   return (
     <>
       <svg className="hidden">
