@@ -1,40 +1,14 @@
 import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
+import { Transition } from "@headlessui/react";
 import Head from "next/head";
-import { data } from ".";
-import BubbleElement from "./test";
 
-export default function Projects() {
-  const options = {
-    size: 160,
-    minSize: 20,
-    gutter: 2,
-    provideProps: true,
-    numCols: 8,
-    fringeWidth: 80,
-    yRadius: 80,
-    xRadius: 80,
-    cornerRadius: 50,
-    showGuides: false,
-    compact: true,
-    gravitation: 8,
-  };
+export async function getServerSideProps(context) {
+  const prevURL = context.req.headers.referer;
+  return { props: { prevURL } };
+}
 
-  const children = data
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .concat(data)
-    .map((data_prop, i) => {
-      return <Child data={data_prop} className="child" key={i}></Child>;
-    });
-
+export default function Projects({ prevURL }) {
   return (
     <c>
       <Head>
@@ -44,7 +18,13 @@ export default function Projects() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="flex flex-col gap-4 ">
+        <div
+          className={`flex flex-col gap-4 ${
+            prevURL.includes("updates")
+              ? "fadeInLeft-animation"
+              : "fadeInRight-animation"
+          }`}
+        >
           <div className="mt-10 text-4xl font-bold">Projects</div>
           <div className="">
             A collection of projects I've designed, prototyped and developed.
@@ -61,13 +41,5 @@ export default function Projects() {
         </div>
       </Container>
     </c>
-  );
-}
-
-function Child({ data }) {
-  return (
-    <div className="childComponent" onClick={() => console.log(data)}>
-      {data}
-    </div>
   );
 }

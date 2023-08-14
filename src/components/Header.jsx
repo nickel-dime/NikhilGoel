@@ -52,9 +52,9 @@ export function Header() {
           <Container className=" w-full">
             <div className="relative flex justify-between content-between align-middle">
               <div className="flex flex-1 justify-left pointer-events-auto -mt-1 items-center align-middle text-4xl font-cursive font-black text-center">
-                <a href="/" className="p-1 cursor-pointer">
+                <Link href="/" className="p-1 cursor-pointer">
                   Nikhil Goel
-                </a>
+                </Link>
               </div>
               <div className="flex flex-initial justify-end align-middle md:justify-center">
                 {/* <MobileNavigation className="pointer-events-auto md:hidden" /> */}

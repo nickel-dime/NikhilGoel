@@ -8,21 +8,6 @@ import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
 import { Update } from "@/components/Update";
 
-const data = [
-  {
-    header: "THIS IS LETTUCE SRIKAR",
-    image: lettucesrikar,
-    bottomHeader: "WANTED BY FBI",
-    bottomText: "1-800-CALLFBI",
-  },
-  {
-    header: "THIS IS AMERICA",
-    image: thisisamerica,
-    bottomHeader: "CHILDISH GAMBINO",
-    bottomText: "10.10.2023",
-  },
-];
-
 import { MdWork, MdRssFeed, MdPublic, MdCode, MdBolt } from "react-icons/md";
 
 export default function UpdatesPage() {
@@ -35,7 +20,7 @@ export default function UpdatesPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 fadeInRight-animation">
           <div className="mt-10 text-4xl font-bold">Updates</div>
           <div className="">
             A collection of updates on my life, from blog posts to projects to

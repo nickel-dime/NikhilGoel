@@ -94,7 +94,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className=" content-center ">
+        <div className=" content-center fadeInLeft-animation">
           <div className="sm:max-w-[800px] max-w-[550px] mt-10">
             <div className="md:mb-10 mb-8">
               <div className="text-3xl md:text-6xl sm:text-4xl max-w-2xl">
