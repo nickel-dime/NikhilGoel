@@ -44,7 +44,7 @@ export default function Projects() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 ">
           <div className="mt-10 text-4xl font-bold">Projects</div>
           <div className="">
             A collection of projects I've designed, prototyped and developed.

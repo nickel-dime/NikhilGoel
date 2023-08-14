@@ -29,7 +29,7 @@ function NavItem({ href, children }) {
 function DesktopNavigation(props) {
   return (
     <nav {...props}>
-      <ul className="flex">
+      <ul className="flex ">
         <NavItem href="/projects">Projects</NavItem>
         <NavItem href="/updates">Updates</NavItem>
         {/* <NavItem href="/about">About</NavItem> */}
