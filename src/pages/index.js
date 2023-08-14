@@ -1,36 +1,89 @@
 import Head from "next/head";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import lettucesrikar from "@/images/lettucesrikar.png";
-import thisisamerica from "@/images/thisisamerica.png";
-import bua from "@/images/bua.png";
+import { Container } from "@/components/Container";
+var ReactRotatingText = require("react-rotating-text");
+import BubbleElement from "./test";
+import Updates from "@/components/Updates";
 
-const data = [
-  {
-    header: "THIS IS LETTUCE SRIKAR",
-    image: lettucesrikar,
-    bottomHeader: "WANTED BY FBI",
-    bottomText: "1-800-CALLFBI",
-  },
-  {
-    header: "THIS IS AMERICA",
-    image: thisisamerica,
-    bottomHeader: "CHILDISH GAMBINO",
-    bottomText: "10.10.2023",
-  },
+import { BiRightArrowAlt } from "react-icons/bi";
+
+var w = 60;
+
+export const data = [
+  <button className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full">
+    <img src="dnotes.png" className="h-[30px]"></img>
+    <div className="text-white text-md text-center font-black ">dNotes</div>
+    <div className="text-white text-[10px] text-center font-black opacity-50">
+      Hackathon
+    </div>
+  </button>,
+  <button className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+    <img src="fireplace.svg" className="h-[50px]"></img>
+    <div className="text-white text-md mt-2 text-center font-black ">
+      Fireplace
+    </div>
+    <div className="text-white text-[10px] text-center font-black opacity-50">
+      Co-Founder
+    </div>
+  </button>,
+  <button className="flex flex-col aspect-square bg-white h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+    <img src="scoutjustlogo.png" className="h-[50px]"></img>
+    <div className="text-black text-md mt-2 text-center font-black ">Scout</div>
+    <div className="text-black text-[10px] text-center font-black opacity-50">
+      Project Lead
+    </div>
+  </button>,
+  <button className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full">
+    <img
+      src="connectgrid.ico"
+      className="h-[50px] bg-black p-1 rounded-md"
+    ></img>
+    <div className="text-white text-[12px] mt-2 text-center font-black ">
+      Connect Grid
+    </div>
+    <div className="text-white text-[10px] text-center font-black opacity-50">
+      Sports Trivia
+    </div>
+  </button>,
+  <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+    <img src="cactivate.svg" className="h-[50px] rounded-full"></img>
+    <div className="text-white text-md mt-2 text-center font-black ">
+      Cactivate
+    </div>
+    <div className="text-white text-[10px] text-center font-black opacity-50">
+      Software Dev
+    </div>
+  </button>,
+  // <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+  //   <img src="cactivate.svg" className="h-[50px] rounded-full"></img>
+  //   <div className="text-white text-md mt-2 text-center font-black ">
+  //     Personal Website
+  //   </div>
+  // </button>,
 ];
 
 export default function Home() {
-  const [randomNumber, setRandomNumber] = useState(0);
-
-  useEffect(() => {
-    generateRandomNumber();
-  }, []);
-
-  const generateRandomNumber = () => {
-    const randomNumber = Math.floor(Math.random() * data.length);
-    setRandomNumber(randomNumber);
+  const options = {
+    size: 160,
+    minSize: 20,
+    gutter: 2,
+    provideProps: true,
+    numCols: 4,
+    fringeWidth: 140,
+    yRadius: 80,
+    xRadius: 80,
+    cornerRadius: 50,
+    showGuides: false,
+    compact: true,
+    gravitation: 8,
   };
+
+  const children = data
+    .concat(data)
+    .concat(data)
+    .concat(data)
+    .map((data_prop, i) => {
+      return <Child data={data_prop} className="child" key={i}></Child>;
+    });
 
   return (
     <>
@@ -40,20 +93,149 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div className="relative flex container mx-auto h-screen place-items-center justify-center">
-          <div className="flex flex-col p-6 justify-evenly items-center font-display h-[80%]">
-            <Image
-              src={bua}
-              height={300}
-              width={500}
-              alt="This is America cover"
-              className="aspect-[3/4]"
-            ></Image>
-            <div>your clue resides with them</div>
+      <Container>
+        <div className=" content-center ">
+          <div className="sm:max-w-[800px] max-w-[550px] mt-10">
+            <div className="md:mb-10 mb-8">
+              <div className="text-3xl md:text-6xl sm:text-4xl max-w-2xl">
+                <ReactRotatingText
+                  items={["Hello!", "Hallo!", "Hola!", "Ciao!"]}
+                />
+                My name is <b className=" text-slate-800">Nikhil</b>!
+              </div>
+            </div>
+            <div className="break-words">
+              <div className="mb-3 max-w-xl leading-relaxed">
+                I'm a software engineer{" "}
+                <span>
+                  <a
+                    href="https://www.northeastern.edu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Northeastern
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>{" "}
+                staring my fourth year. I'm passionate about building human
+                centered software. Feel free to email me at any time, I'm always
+                happy to chat at a coffee shop! <br></br>
+              </div>
+              <div className="max-w-xl mt-6">
+                Currently Co-Founder{" "}
+                <span>
+                  <a
+                    href="https://www.makefireplace.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Fireplace
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                . Previously Developer{" "}
+                <span>
+                  <a
+                    href="https://www.cactivate.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Cactivate
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                , Project Lead{" "}
+                <span>
+                  <a
+                    href="https://scout.camd.northeastern.edu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Scout
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                , Intern{" "}
+                <span>
+                  <a
+                    href="https://www.gotbot.co.za/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @GotBot
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                ,{" &"} Intern{" "}
+                <span>
+                  <a
+                    href="https://ceibal.edu.uy/en/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline transition-all text-primaryText"
+                  >
+                    @Plan Ceibal
+                  </a>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                </span>
+                .
+              </div>
+            </div>
+            <div className="flex sm:flex-row flex-col gap-5 pb-4 sm:pb-0">
+              <div className=" basis-1/2">
+                <div className="">
+                  <a
+                    href="/projects"
+                    className="mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
+                  >
+                    Projects
+                    <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
+                      &#x2192;
+                    </div>
+                  </a>
+                </div>
+
+                <div className="mt-5 mb-3 bg-slate-700 rounded-lg backdrop-blur-lg">
+                  <BubbleElement options={options} className="myBubbleUI">
+                    {children}
+                  </BubbleElement>
+                </div>
+              </div>
+              <div className="basis-1/2">
+                <div className="">
+                  <a
+                    href="/updates"
+                    className="sm:mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
+                  >
+                    Updates
+                    <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
+                      &#x2192;
+                    </div>
+                  </a>
+                </div>
+                <div className="mt-5 mb-3 bg-white text-black rounded-lg">
+                  <div className="h-[300px] px-4 overflow-auto">
+                    <Updates></Updates>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </Container>
     </>
+  );
+}
+
+function Child({ data }) {
+  return (
+    <div className="childComponent" onClick={() => console.log(data)}>
+      {data}
+    </div>
   );
 }
