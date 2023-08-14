@@ -183,3 +183,15 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.dot {
+  border-bottom: dotted 2px;
+  width: auto;
+  float: left;
+  color: gray;
+  flex-grow: 1;
+  position: relative;
+  display: block;
+  height: 12px;
+  margin: 0 5px 0 5px;
+}

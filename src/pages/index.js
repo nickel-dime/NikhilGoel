@@ -1,25 +1,19 @@
 import Head from "next/head";
 import { Container } from "@/components/Container";
 var ReactRotatingText = require("react-rotating-text");
-import BubbleUI from "react-bubble-ui";
 import BubbleElement from "./test";
-
-import "react-bubble-ui/dist/index.css";
 import Updates from "@/components/Updates";
+
+import { BiRightArrowAlt } from "react-icons/bi";
 
 var w = 60;
 
-const data = [
-  <button className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full">
-    <img
-      src="connectgrid.ico"
-      className="h-[50px] bg-black p-1 rounded-md"
-    ></img>
-    <div className="text-white text-[12px] mt-2 text-center font-black ">
-      Connect Grid
-    </div>
+export const data = [
+  <button className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full">
+    <img src="dnotes.png" className="h-[30px]"></img>
+    <div className="text-white text-md text-center font-black ">dNotes</div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
-      Sports Trivia
+      Hackathon
     </div>
   </button>,
   <button className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
@@ -38,11 +32,16 @@ const data = [
       Project Lead
     </div>
   </button>,
-  <button className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full">
-    <img src="dnotes.png" className="h-[30px]"></img>
-    <div className="text-white text-md text-center font-black ">dNotes</div>
+  <button className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full">
+    <img
+      src="connectgrid.ico"
+      className="h-[50px] bg-black p-1 rounded-md"
+    ></img>
+    <div className="text-white text-[12px] mt-2 text-center font-black ">
+      Connect Grid
+    </div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
-      Hackathon
+      Sports Trivia
     </div>
   </button>,
   <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
@@ -121,7 +120,7 @@ export default function Home() {
                 </span>{" "}
                 staring my fourth year. I'm passionate about building human
                 centered software. Feel free to email me at any time, I'm always
-                happy to get a coffee! <br></br>
+                happy to chat at a coffee shop! <br></br>
               </div>
               <div className="max-w-xl mt-6">
                 Currently Co-Founder{" "}
@@ -187,9 +186,20 @@ export default function Home() {
                 .
               </div>
             </div>
-            <div className="flex sm:flex-row flex-col gap-5">
+            <div className="flex sm:flex-row flex-col gap-5 pb-4 sm:pb-0">
               <div className=" basis-1/2">
-                <div className="mt-10 font-bold text-2xl">Projects</div>
+                <div className="">
+                  <a
+                    href="/projects"
+                    className="mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
+                  >
+                    Projects
+                    <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
+                      &#x2192;
+                    </div>
+                  </a>
+                </div>
+
                 <div className="mt-5 mb-3 bg-slate-700 rounded-lg backdrop-blur-lg">
                   <BubbleElement options={options} className="myBubbleUI">
                     {children}
@@ -197,8 +207,18 @@ export default function Home() {
                 </div>
               </div>
               <div className="basis-1/2">
-                <div className="sm:mt-10 font-bold text-2xl">Updates</div>
-                <div className="mt-5 mb-3 bg-slate-700 text-slate-50 rounded-lg">
+                <div className="">
+                  <a
+                    href="/updates"
+                    className="sm:mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
+                  >
+                    Updates
+                    <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
+                      &#x2192;
+                    </div>
+                  </a>
+                </div>
+                <div className="mt-5 mb-3 bg-white text-black rounded-lg">
                   <div className="h-[300px] px-4 overflow-auto">
                     <Updates></Updates>
                   </div>

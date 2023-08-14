@@ -15,7 +15,7 @@ function NavItem({ href, children }) {
       <Link
         href={href}
         className={clsx(
-          "relative block px-3 py-2 transition",
+          "relative block px-3 py-2 transition font-semibold",
           isActive ? "text-slate-900 " : "hover:text-slate-600 "
         )}
       >
@@ -31,8 +31,8 @@ function DesktopNavigation(props) {
     <nav {...props}>
       <ul className="flex">
         <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/thoughts">Thoughts</NavItem>
-        <NavItem href="/about">About</NavItem>
+        <NavItem href="/updates">Updates</NavItem>
+        {/* <NavItem href="/about">About</NavItem> */}
       </ul>
     </nav>
   );
@@ -47,12 +47,14 @@ function clamp(number, a, b) {
 export function Header() {
   return (
     <>
-      <header className="pointer-events-none relative z-50 flex flex-col">
+      <header className="relative z-50 flex flex-col">
         <div className="top-0 z-10 h-16 pt-4">
           <Container className=" w-full">
             <div className="relative flex justify-between content-between align-middle">
-              <div className="flex flex-1 justify-left -mt-1 items-center align-middle text-4xl font-cursive font-black text-center">
-                Nikhil Goel
+              <div className="flex flex-1 justify-left pointer-events-auto -mt-1 items-center align-middle text-4xl font-cursive font-black text-center">
+                <a href="/" className="p-1 cursor-pointer">
+                  Nikhil Goel
+                </a>
               </div>
               <div className="flex flex-initial justify-end align-middle md:justify-center">
                 {/* <MobileNavigation className="pointer-events-auto md:hidden" /> */}

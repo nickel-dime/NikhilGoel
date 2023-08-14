@@ -37,7 +37,11 @@ module.exports = {
       display: ["Ubuntu Monospace"],
       cursive: ["Shadows Into Light"],
     },
-    extend: {},
+    extend: {
+      content: {
+        work: 'url("/work.svg")',
+      },
+    },
   },
   plugins: [],
 };

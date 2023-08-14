@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }) {
             <div className="w-full" />
           </div>
         </div> */}
-        <div className="module-inside flex flex-col font-fira min-h-screen text-slate-900 bg-[#FFFAED]">
+        <div className="module-inside flex flex-col font-fira min-h-screen text-slate-900 bg-[#fcedc7]">
           <div className="">
             <Header></Header>
           </div>

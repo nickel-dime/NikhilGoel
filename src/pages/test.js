@@ -364,10 +364,10 @@ function BubbleElement(props) {
                   },
                   options.provideProps
                     ? React.cloneElement(comp, {
-                        bubblesize: bubbleSize * options.size,
-                        distancetocenter: distance,
-                        maxsize: options.size,
-                        minsize: options.minSize,
+                        bubbleSize: bubbleSize * options.size,
+                        distanceToCenter: distance,
+                        maxSize: options.size,
+                        minSize: options.minSize,
                       })
                     : comp
                 );
