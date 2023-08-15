@@ -12,8 +12,6 @@ export async function getServerSideProps(context) {
     const date1 = a.date;
     const date2 = b.date;
 
-    console.log(date1, date2);
-
     var aa = date1.split("/").reverse().join(),
       bb = date2.split("/").reverse().join();
     return aa > bb ? -1 : aa < bb ? 1 : 0;
