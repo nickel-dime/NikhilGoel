@@ -20,6 +20,12 @@
   font-weight: 500;
 }
 
+@font-face {
+  font-family: "Shadows Into Light";
+  src: url("../../public/ShadowsIntoLight-Regular.ttf") format("opentype");
+  font-weight: 500;
+}
+
 .testStyle::before {
   background-color: #fcfcfc;
   /* filter: url(#noiseFilter); */
