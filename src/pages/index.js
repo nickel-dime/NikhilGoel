@@ -176,7 +176,7 @@ export default function Home({ updatesSliced }) {
                   >
                     @Scout
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>
                 , Intern{" "}
                 <span>
@@ -190,7 +190,7 @@ export default function Home({ updatesSliced }) {
                   </a>
                   <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
                 </span>
-                ,{" &"} Intern{" "}
+                ,&#xFE0E;{" &"} Intern{" "}
                 <span>
                   <a
                     href="https://ceibal.edu.uy/en/"

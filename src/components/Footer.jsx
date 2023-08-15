@@ -5,7 +5,7 @@ import { MdFavorite } from "react-icons/md";
 
 function NavLink({ href, children }) {
   return (
-    <Link href={href} className="transition hover:text-slate-600">
+    <Link href={href} className="transition sm:hover:text-slate-600">
       {children}
     </Link>
   );

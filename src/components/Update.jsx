@@ -19,7 +19,7 @@ export function Update({ text, category, date }) {
   // bg-gradient-to-r from-[#A1CCD1] to-[#35be63]
   return (
     <>
-      <button className="flex sm:items-center sm:space-x-4 justify-between hover:bg-[#e3d5b3] p-2 sm:rounded-md">
+      <button className="flex sm:items-center sm:space-x-4 justify-between sm:hover:bg-[#e3d5b3] p-2 sm:rounded-md">
         <div className="sm:flex-none font-medium">
           <div className="flex align-middle justify-center sm:items-center">
             <div className="mt-1 sm:mt-0">{categoryToIcon[category]}</div>

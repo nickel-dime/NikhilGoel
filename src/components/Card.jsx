@@ -9,7 +9,7 @@ export default function Card({ project }) {
     <>
       <button
         style={{ backgroundColor: project.pastel_color }}
-        className={`flex gap-3 text-left group  hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
+        className={`flex gap-3 text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
       >
         <div
           // style={{ maxWidth: 388.3 }}
@@ -37,7 +37,7 @@ export default function Card({ project }) {
         </div>
         <div className="relative justify-start -top-1 left-1 sm:-top-7 sm:left-[37px]  bg-center ">
           <img
-            className="group-hover:scale-105 scale-125 sm:scale-100 transition-all duration-200 ease-in-out"
+            className="sm:group-hover:scale-105 scale-125 sm:scale-100 transition-all duration-200 ease-in-out"
             src={project.gif_image}
           ></img>
         </div>
