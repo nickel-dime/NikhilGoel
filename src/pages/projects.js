@@ -26,7 +26,7 @@ export default function Projects({ prevURL = null, projects }) {
       <Container>
         <div
           className={`flex flex-col gap-4 ${
-            prevURL
+            prevURL == null
               ? ""
               : prevURL.includes("updates")
               ? "fadeInLeft-animation"
