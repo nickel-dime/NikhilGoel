@@ -41,7 +41,7 @@ export default function UpdatesPage({ updates }) {
             A collection of updates on my life, from blog posts to projects to
             random ideas!
           </div>
-          <div className="bg-[#A1CCD1] sm:bg-inherit sm:rounded-none rounded-md p-4 sm:p-0 mt-3 mb-10 flex flex-col sm:divide-none divide-y divide-opacity-60  divide-dotted divide-black">
+          <div className="bg-[#A1CCD1] sm:bg-inherit sm:rounded-none rounded-md px-4 py-2 sm:p-0 mt-3 mb-10 flex flex-col sm:divide-none divide-y divide-opacity-60  divide-dotted divide-black">
             {updates.map((update) => (
               <Update
                 key={update._id}
