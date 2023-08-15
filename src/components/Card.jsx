@@ -9,7 +9,7 @@ export default function Card({ project }) {
     <>
       <button
         style={{ backgroundColor: project.pastel_color }}
-        className={`flex gap-3 text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
+        className={`sm:flex gap-3 hidden text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
       >
         <div
           // style={{ maxWidth: 388.3 }}
@@ -42,6 +42,42 @@ export default function Card({ project }) {
           ></img>
         </div>
       </button>
+      <div
+        className="flex sm:hidden flex-col rounded-md"
+        style={{ backgroundColor: project.pastel_color }}
+      >
+        <button
+          className={`gap-3 text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
+        >
+          <div
+            // style={{ maxWidth: 388.3 }}
+            className="flex flex-col justify-center h-full p-3 ml-1"
+          >
+            <div className="text-slate-900 text-xs tracking-wider mb-1">
+              {project.date_range}
+            </div>
+            <div className="text-slate-900 text-lg sm:text-2xl font-bold">
+              {project.name}
+            </div>
+            <div className=" text-gray-600 text-xs sm:text-sm">
+              {project.short_description}
+            </div>
+            {project.statistic && (
+              <div className=" mt-4 hidden sm:block">
+                <div className="text-slate-900 text-lg leading-tight font-bold">
+                  {project.statistic.number}
+                </div>
+                <div className="text-gray-600 tracking-wider leading-tight text-xs">
+                  {project.statistic.description}
+                </div>
+              </div>
+            )}
+          </div>
+        </button>
+        <div className=" p-4 rounded-md">
+          <img className="rounded-md" src="connectgridcover.png"></img>
+        </div>
+      </div>
     </>
   );
 }
