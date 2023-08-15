@@ -5,12 +5,27 @@ import lettucesrikar from "@/images/lettucesrikar.png";
 import thisisamerica from "@/images/thisisamerica.png";
 import bua from "@/images/bua.png";
 import { Container } from "@/components/Container";
-import { Card } from "@/components/Card";
 import { Update } from "@/components/Update";
+import { getUpdates } from "../../sanity/queries/update";
 
 import { MdWork, MdRssFeed, MdPublic, MdCode, MdBolt } from "react-icons/md";
 
-export default function UpdatesPage() {
+export async function getServerSideProps(context) {
+  const updates = await getUpdates();
+
+  updates.sort(function (a, b) {
+    const date1 = a.date;
+    const date2 = b.date;
+
+    var aa = date1.split("/").reverse().join(),
+      bb = date2.split("/").reverse().join();
+    return aa > bb ? -1 : aa < bb ? 1 : 0;
+  });
+
+  return { props: { updates } };
+}
+
+export default function UpdatesPage({ updates }) {
   return (
     <>
       <Head>
@@ -26,33 +41,15 @@ export default function UpdatesPage() {
             A collection of updates on my life, from blog posts to projects to
             random ideas!
           </div>
-          <div className="mt-3 mb-10 flex flex-col">
-            <Update
-              text={
-                "Started at Northeastern University as a Computer Science student."
-              }
-              icon={<MdWork className=" fill-lime-800"></MdWork>}
-            ></Update>
-            <Update
-              text={
-                "Developed the website Connect Grid Game, gaining 10K users in a month."
-              }
-              icon={<MdRssFeed className=" fill-sky-500"></MdRssFeed>}
-            ></Update>
-            <Update
-              text={
-                "Started working at a startup in Boston called Cactivate with my friend Srikar."
-              }
-              icon={<MdPublic className=" fill-cyan-800"></MdPublic>}
-            ></Update>
-            <Update
-              text={"Went on a study abroad trip to Spain! Que bonita!"}
-              icon={<MdCode className=" fill-rose-800"></MdCode>}
-            ></Update>
-            <Update
-              text={"Started making this beautiful website :)"}
-              icon={<MdBolt className=" fill-yellow-600"></MdBolt>}
-            ></Update>
+          <div className="bg-[#A1CCD1] sm:bg-inherit sm:rounded-none rounded-md p-4 sm:p-0 mt-3 mb-10 flex flex-col sm:divide-none divide-y divide-opacity-60  divide-dotted divide-black">
+            {updates.map((update) => (
+              <Update
+                key={update._id}
+                text={update.update}
+                date={update.date}
+                category={update.category}
+              ></Update>
+            ))}
           </div>
         </div>
       </Container>

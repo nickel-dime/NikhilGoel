@@ -1,14 +1,29 @@
-import { MdOutlineWorkOutline, MdRssFeed } from "react-icons/md";
+import {
+  MdBolt,
+  MdCode,
+  MdOutlineWorkOutline,
+  MdPublic,
+  MdRssFeed,
+  MdWork,
+} from "react-icons/md";
 
-export function Update({ text, icon }) {
+export const categoryToIcon = {
+  project: <MdCode MdCode className=" fill-rose-800"></MdCode>,
+  travel: <MdPublic className=" fill-cyan-800"></MdPublic>,
+  work: <MdWork className=" fill-lime-800"></MdWork>,
+  blog: <MdRssFeed className=" fill-sky-500"></MdRssFeed>,
+  update: <MdBolt className=" fill-yellow-600"></MdBolt>,
+};
+
+export function Update({ text, category, date }) {
   // bg-gradient-to-r from-[#A1CCD1] to-[#35be63]
   return (
     <>
-      <button className="flex items-center space-x-4 hover:bg-[#e3d5b3] p-3 rounded-md">
+      <button className="flex sm:items-center sm:space-x-4 justify-between hover:bg-[#e3d5b3] p-2 sm:rounded-md">
         <div className="sm:flex-none font-medium">
-          <div className="flex align-middle justify-center items-center">
-            <div className="">{icon}</div>
-            <div className="mt-1 ml-3 text-sm sm:text-base text-left w-[180px] sm:w-auto">
+          <div className="flex align-middle justify-center sm:items-center">
+            <div className="mt-1 sm:mt-0">{categoryToIcon[category]}</div>
+            <div className="sm:mt-[0.125rem] ml-3 text-sm sm:text-base text-left ">
               {text}
             </div>
           </div>
@@ -17,8 +32,10 @@ export function Update({ text, icon }) {
           </div> */}
           {/* {text} */}
         </div>
-        <div className="w-full border-t border-gray-800 border-dotted shrink mt-1"></div>
-        <div className="flex-none font-mono text-quaternary">07/20</div>
+        <div className="w-full border-t border-gray-800 border-dotted shrink mt-1 hidden sm:block"></div>
+        <div className="flex-none font-mono text-quaternary text-xs sm:text-sm pl-1">
+          {date}
+        </div>
       </button>
     </>
   );

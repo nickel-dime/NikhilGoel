@@ -5,6 +5,13 @@
 @font-face {
   font-family: Proxima Nova;
   src: url("../../public/Proxima\ Nova\ Regular.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Proxima Nova;
+  src: url("../../public/Proxima\ Nova\ Semibold.otf") format("opentype");
+  font-weight: 700;
 }
 
 .testStyle::before {

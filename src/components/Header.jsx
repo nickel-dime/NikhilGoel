@@ -15,8 +15,8 @@ function NavItem({ href, children }) {
       <Link
         href={href}
         className={clsx(
-          "relative block px-3 py-2 transition font-semibold",
-          isActive ? "text-slate-900 " : "hover:text-slate-600 "
+          "relative block px-3 py-2 transition font-semibold text-lg tracking-tight",
+          isActive ? " text-black" : " text-gray-600 hover:text-slate-600 "
         )}
       >
         {children}

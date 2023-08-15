@@ -3,10 +3,26 @@ import { Container } from "@/components/Container";
 var ReactRotatingText = require("react-rotating-text");
 import BubbleElement from "./test";
 import Updates from "@/components/Updates";
+import { getUpdates } from "../../sanity/queries/update";
 
-import { BiRightArrowAlt } from "react-icons/bi";
+export async function getServerSideProps(context) {
+  const updates = await getUpdates();
 
-var w = 60;
+  updates.sort(function (a, b) {
+    const date1 = a.date;
+    const date2 = b.date;
+
+    console.log(date1, date2);
+
+    var aa = date1.split("/").reverse().join(),
+      bb = date2.split("/").reverse().join();
+    return aa > bb ? -1 : aa < bb ? 1 : 0;
+  });
+
+  const updatesSliced = updates.slice(0, 5);
+
+  return { props: { updatesSliced } };
+}
 
 export const data = [
   <button className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full">
@@ -61,7 +77,7 @@ export const data = [
   // </button>,
 ];
 
-export default function Home() {
+export default function Home({ updatesSliced }) {
   const options = {
     size: 160,
     minSize: 20,
@@ -76,6 +92,8 @@ export default function Home() {
     compact: true,
     gravitation: 8,
   };
+
+  // const data = [];
 
   const children = data
     .concat(data)
@@ -97,11 +115,14 @@ export default function Home() {
         <div className=" content-center fadeInLeft-animation">
           <div className="sm:max-w-[800px] max-w-[550px] mt-10">
             <div className="md:mb-10 mb-8">
-              <div className="text-3xl md:text-6xl sm:text-4xl max-w-2xl">
+              <div className="text-3xl md:text-[55px] sm:text-4xl max-w-2xl">
                 <ReactRotatingText
                   items={["Hello!", "Hallo!", "Hola!", "Ciao!"]}
                 />
-                My name is <b className=" text-slate-800">Nikhil</b>!
+                My name is{" "}
+                <b className=" text-slate-800 font-cursive tracking-wider">
+                  Nikhil!
+                </b>
               </div>
             </div>
             <div className="break-words">
@@ -119,8 +140,8 @@ export default function Home() {
                   <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
                 </span>{" "}
                 staring my fourth year. I'm passionate about building human
-                centered software. Feel free to email me at any time, I'm always
-                happy to chat at a coffee shop! <br></br>
+                centered interfaces. Feel free to email me at any time, I'm
+                always happy to chat at a coffee shop! <br></br>
               </div>
               <div className="max-w-xl mt-6">
                 Currently Co-Founder{" "}
@@ -220,7 +241,7 @@ export default function Home() {
                 </div>
                 <div className="mt-5 mb-3 bg-white text-black rounded-lg">
                   <div className="h-[300px] px-4 overflow-auto">
-                    <Updates></Updates>
+                    <Updates updatesSliced={updatesSliced}></Updates>
                   </div>
                 </div>
               </div>
