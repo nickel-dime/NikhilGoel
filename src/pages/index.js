@@ -135,7 +135,7 @@ export default function Home({ updatesSliced }) {
                   >
                     @Northeastern
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>{" "}
                 staring my fourth year. I'm passionate about building human
                 centered interfaces. Feel free to email me at any time, I'm
@@ -152,7 +152,7 @@ export default function Home({ updatesSliced }) {
                   >
                     @Fireplace
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>
                 . Previously Developer{" "}
                 <span>
@@ -164,7 +164,7 @@ export default function Home({ updatesSliced }) {
                   >
                     @Cactivate
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>
                 , Project Lead{" "}
                 <span>
@@ -188,9 +188,9 @@ export default function Home({ updatesSliced }) {
                   >
                     @GotBot
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>
-                ,&#xFE0E;{" &"} Intern{" "}
+                ,{" &"} Intern{" "}
                 <span>
                   <a
                     href="https://ceibal.edu.uy/en/"
@@ -200,7 +200,7 @@ export default function Home({ updatesSliced }) {
                   >
                     @Plan Ceibal
                   </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗</span>
+                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
                 </span>
                 .
               </div>

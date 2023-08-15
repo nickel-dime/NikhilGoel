@@ -14,7 +14,11 @@
   font-weight: 700;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@font-face {
+  font-family: "Shadows Into Light";
+  src: url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+  font-weight: 500;
+}
 
 .testStyle::before {
   background-color: #fcfcfc;
