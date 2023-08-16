@@ -80,10 +80,22 @@ const project = {
       type: "url",
     },
     {
+      name: "ordering",
+      title: "ordering",
+      type: "number",
+    },
+    {
       name: "content",
       title: "Conent",
       type: "array",
       of: [{ type: "block" }],
+    },
+  ],
+  orderings: [
+    {
+      title: "Order",
+      name: "customOrder",
+      by: [{ field: "ordering", direction: "asc" }],
     },
   ],
 };

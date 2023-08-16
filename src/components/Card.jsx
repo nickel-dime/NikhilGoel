@@ -9,20 +9,22 @@ export default function Card({ project }) {
     <>
       <button
         style={{ backgroundColor: project.pastel_color }}
-        className={`sm:flex gap-3 hidden text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
+        className={`sm:flex gap-3 hidden text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md overflow-hidden`}
       >
         <div
           // style={{ maxWidth: 388.3 }}
-          className="flex flex-col justify-center h-full p-3 ml-1 sm:max-w-[388.3px] max-w-[178px]"
+          className="flex flex-col justify-center h-full p-3 ml-1 sm:max-w-[388.3px] max-w-[178px] gap-3"
         >
-          <div className="text-slate-900 text-xs tracking-wider mb-1 hidden sm:block">
+          <div className="text-slate-900 text-xs tracking-wider items-center hidden sm:flex">
             {project.date_range}
           </div>
-          <div className="text-slate-900 text-lg sm:text-2xl font-bold">
-            {project.name}
-          </div>
-          <div className=" text-gray-600 text-xs sm:text-sm">
-            {project.short_description}
+          <div className="">
+            <div className="text-slate-900 text-lg sm:text-2xl font-bold">
+              {project.name}
+            </div>
+            <div className=" text-gray-600 text-xs sm:text-sm grow">
+              {project.short_description}
+            </div>
           </div>
           {project.statistic && (
             <div className=" mt-4 hidden sm:block">
@@ -35,9 +37,9 @@ export default function Card({ project }) {
             </div>
           )}
         </div>
-        <div className="relative justify-start -top-1 left-1 sm:-top-7 sm:left-[37px]  bg-center ">
+        <div className="relative justify-start -top-1 left-1 sm:top-10  sm:left-[20px]  bg-center ">
           <img
-            className="sm:group-hover:scale-105 scale-125 sm:scale-100 transition-all duration-200 ease-in-out"
+            className="sm:group-hover:scale-105 -rotate-[6deg] scale-125 rounded-md sm:scale-100 transition-all duration-200 ease-in-out"
             src={project.gif_image}
           ></img>
         </div>
@@ -47,7 +49,7 @@ export default function Card({ project }) {
         style={{ backgroundColor: project.pastel_color }}
       >
         <button
-          className={`gap-3 text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  sm:h-[200px] overflow-hidden`}
+          className={`gap-3 text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md  overflow-hidden`}
         >
           <div
             // style={{ maxWidth: 388.3 }}
@@ -75,7 +77,7 @@ export default function Card({ project }) {
           </div>
         </button>
         <div className=" p-4 rounded-md">
-          <img className="rounded-md" src="connectgridcover.png"></img>
+          <img className="rounded-md" src={project.gif_image}></img>
         </div>
       </div>
     </>

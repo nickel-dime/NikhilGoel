@@ -31,7 +31,7 @@ export const data = [
     </div>
   </button>,
   <button className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
-    <img src="fireplace.svg" className="h-[50px]"></img>
+    <img src="fireplace/fireplace.svg" className="h-[50px]"></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Fireplace
     </div>
@@ -40,7 +40,7 @@ export const data = [
     </div>
   </button>,
   <button className="flex flex-col aspect-square bg-white h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
-    <img src="scoutjustlogo.png" className="h-[50px]"></img>
+    <img src="scout/scoutjustlogo.png" className="h-[50px]"></img>
     <div className="text-black text-md mt-2 text-center font-black ">Scout</div>
     <div className="text-black text-[10px] text-center font-black opacity-50">
       Project Lead
@@ -48,7 +48,7 @@ export const data = [
   </button>,
   <button className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full">
     <img
-      src="connectgrid.ico"
+      src="connect-grid/connectgrid.ico"
       className="h-[50px] bg-black p-1 rounded-md"
     ></img>
     <div className="text-white text-[12px] mt-2 text-center font-black ">
@@ -59,7 +59,7 @@ export const data = [
     </div>
   </button>,
   <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
-    <img src="cactivate.svg" className="h-[50px] rounded-full"></img>
+    <img src="cactivate/cactivate.svg" className="h-[50px] rounded-full"></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Cactivate
     </div>
@@ -119,7 +119,7 @@ export default function Home({ updatesSliced }) {
                 />
                 My name is{" "}
                 <b className=" text-slate-800 font-cursive tracking-wider">
-                  Nikhil!
+                  Nikhil
                 </b>
               </div>
             </div>
