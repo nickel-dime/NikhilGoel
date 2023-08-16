@@ -10,7 +10,7 @@ import { getUpdates } from "../../sanity/queries/update";
 
 import { MdWork, MdRssFeed, MdPublic, MdCode, MdBolt } from "react-icons/md";
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const updates = await getUpdates();
 
   updates.sort(function (a, b) {

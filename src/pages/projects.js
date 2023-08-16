@@ -5,13 +5,19 @@ import { useEffect, useState } from "react";
 import { getProjects } from "../../sanity/queries/project";
 import Card from "@/components/Card";
 
-export async function getServerSideProps(context) {
-  const prevURL = context.req.headers.referer
-    ? context.req.headers.referer
-    : null;
+// export async function getServerSideProps(context) {
+//   const prevURL = context.req.headers.referer
+//     ? context.req.headers.referer
+//     : null;
+//   const projects = await getProjects();
+
+//   return { props: { prevURL, projects } };
+// }
+
+export async function getStaticProps(context) {
   const projects = await getProjects();
 
-  return { props: { prevURL, projects } };
+  return { props: { projects } };
 }
 
 export default function Projects({ prevURL = null, projects }) {
