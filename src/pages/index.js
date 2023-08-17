@@ -107,7 +107,7 @@ export default function Home({ updatesSliced }) {
         <title>Nikhil Goel</title>
         <meta name="description" content="Personal website for Nikhil Goel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/ndimelogo.png" />
       </Head>
       <Container>
         <div className=" content-center fadeInLeft-animation">

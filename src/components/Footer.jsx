@@ -19,7 +19,7 @@ export function Footer() {
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium ">
-                <NavLink href="/thoughts">Resume</NavLink>
+                <NavLink href="resume.pdf">Resume</NavLink>
                 <NavLink href="https://www.linkedin.com/in/nikhilgoel10/">
                   LinkedIn
                 </NavLink>
