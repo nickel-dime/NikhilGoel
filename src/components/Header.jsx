@@ -30,7 +30,9 @@ function DesktopNavigation(props) {
   return (
     <nav {...props}>
       <ul className="flex ">
-        <NavItem href="/projects">Projects</NavItem>
+        <NavItem href={`/projects?ref=${useRouter().pathname.slice(1)}`}>
+          Projects
+        </NavItem>
         <NavItem href="/updates">Updates</NavItem>
         {/* <NavItem href="/about">About</NavItem> */}
       </ul>

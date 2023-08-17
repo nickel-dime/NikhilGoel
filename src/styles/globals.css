@@ -26,22 +26,6 @@
   font-weight: 500;
 }
 
-.testStyle::before {
-  background-color: #fcfcfc;
-  /* filter: url(#noiseFilter); */
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.testStyle {
-  position: relative;
-}
-
 .module-inside {
   position: relative;
 }

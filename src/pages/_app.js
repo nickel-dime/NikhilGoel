@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/router";
 import { Transition } from "@headlessui/react";
 import { Footer } from "@/components/Footer";
-import { useEffect } from "react";
+import { createContext, useEffect, useRef } from "react";
 
 export default function App({ Component, pageProps }) {
   // useEffect(() => {
@@ -19,24 +19,7 @@ export default function App({ Component, pageProps }) {
   if (router.pathname.includes("studio")) {
     return (
       <>
-        <svg className="hidden">
-          <filter id="noiseFilter">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.7"
-              stitchTiles="stitch"
-            />
-            <feColorMatrix
-              in="colorNoise"
-              type="matrix"
-              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
-            />
-            <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-          </filter>
-        </svg>
-
-        <div className="testStyle font-sans">
+        <div className="">
           {/* <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
             <div className="w-full" />
@@ -54,29 +37,13 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <svg className="hidden">
-        <filter id="noiseFilter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.7"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix
-            in="colorNoise"
-            type="matrix"
-            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
-          />
-          <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-          <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-        </filter>
-      </svg>
       {/* <div id="globalLoader">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
           alt=""
         />
       </div> */}
-      <div className="testStyle font-sans">
+      <div className="">
         {/* <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
             <div className="w-full" />

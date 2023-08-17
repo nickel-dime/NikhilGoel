@@ -1,9 +1,11 @@
 import { Container } from "@/components/Container";
 import { Transition } from "@headlessui/react";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getProjects } from "../../sanity/queries/project";
 import Card from "@/components/Card";
+import { AppContext } from "./_app";
+import { useRouter } from "next/router";
 
 // export async function getServerSideProps(context) {
 //   const prevURL = context.req.headers.referer
@@ -21,6 +23,8 @@ export async function getStaticProps(context) {
 }
 
 export default function Projects({ prevURL = null, projects }) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -32,9 +36,9 @@ export default function Projects({ prevURL = null, projects }) {
       <Container>
         <div
           className={`flex flex-col gap-4 ${
-            prevURL == null
+            router.query["ref"] == null
               ? ""
-              : prevURL.includes("updates")
+              : router.query["ref"].includes("updates")
               ? "fadeInLeft-animation"
               : "fadeInRight-animation"
           }`}
