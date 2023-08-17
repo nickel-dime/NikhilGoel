@@ -5,7 +5,7 @@ import BubbleElement from "./test";
 import Updates from "@/components/Updates";
 import { getUpdates } from "../../sanity/queries/update";
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const updates = await getUpdates();
 
   updates.sort(function (a, b) {
