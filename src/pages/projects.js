@@ -40,6 +40,8 @@ export default function Projects({ prevURL = null, projects }) {
               ? ""
               : router.query["ref"].includes("updates")
               ? "fadeInLeft-animation"
+              : router.query["ref"].includes("project")
+              ? ""
               : "fadeInRight-animation"
           }`}
         >
