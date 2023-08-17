@@ -4,8 +4,16 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/router";
 import { Transition } from "@headlessui/react";
 import { Footer } from "@/components/Footer";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const loader = document.getElementById("globalLoader");
+      if (loader) loader.remove();
+    }
+  }, []);
+
   const router = useRouter();
 
   if (router.pathname.includes("studio")) {
@@ -62,7 +70,12 @@ export default function App({ Component, pageProps }) {
           <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
         </filter>
       </svg>
-
+      <div id="globalLoader">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
+          alt=""
+        />
+      </div>
       <div className="testStyle font-sans">
         {/* <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
