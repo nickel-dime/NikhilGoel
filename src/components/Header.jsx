@@ -8,7 +8,6 @@ import { Container } from "@/components/Container";
 import { Fragment, useEffect, useRef } from "react";
 
 function NavItem({ href, children }) {
-  console.log(useRouter().pathname);
   let isActive = useRouter().pathname === href.split("?")[0];
 
   return (
