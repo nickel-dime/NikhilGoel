@@ -46,10 +46,10 @@ export default function App({ Component, pageProps }) {
       <div className="">
         {/* <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
-            <div className="w-full" />
+            <div className="w-full" /> fcedc7
           </div>
         </div> */}
-        <div className="module-inside flex flex-col font-fira min-h-screen text-slate-900 bg-[#fcedc7]">
+        <div className="module-inside flex flex-col font-whitney min-h-screen text-slate-900 bg-[#fbf1d6]">
           <Header></Header>
           <main className="grow">
             <Component {...pageProps} />

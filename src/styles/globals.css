@@ -26,6 +26,18 @@
   font-weight: 500;
 }
 
+@font-face {
+  font-family: "Whitney SSm";
+  src: url("../../public/whitney/whitneybook.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Whitney SSm";
+  src: url("../../public/whitney/whitneysemibold.otf") format("opentype");
+  font-weight: 600;
+}
+
 .module-inside {
   position: relative;
 }

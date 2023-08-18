@@ -36,8 +36,13 @@ module.exports = {
       fira: ["Proxima Nova"],
       display: ["Ubuntu Monospace"],
       cursive: ["Shadows Into Light"],
+      whitney: ["Whitney SSm"],
     },
-    extend: {},
+    extend: {
+      lineHeight: {
+        article: 1.75,
+      },
+    },
   },
   plugins: [],
 };

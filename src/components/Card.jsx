@@ -7,8 +7,9 @@ export default function Card({ project }) {
   // bg-gradient-to-r from-[#A1CCD1] to-[#35be63]
   return (
     <>
-      <button
+      <a
         style={{ backgroundColor: project.pastel_color }}
+        href={`/post/${project.slug.current}`}
         className={`sm:flex gap-3 hidden text-left group  sm:hover:opacity-95 backdrop-blur-md rounded-md overflow-hidden`}
       >
         <div
@@ -43,7 +44,7 @@ export default function Card({ project }) {
             src={project.gif_image}
           ></img>
         </div>
-      </button>
+      </a>
       <div
         className="flex sm:hidden flex-col rounded-md"
         style={{ backgroundColor: project.pastel_color }}

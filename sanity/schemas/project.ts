@@ -56,6 +56,11 @@ const project = {
       type: "string",
     },
     {
+      name: "hi_res_gif",
+      title: "Hi Res Gif",
+      type: "string",
+    },
+    {
       name: "color",
       title: "Color",
       type: "string",

@@ -25,14 +25,20 @@ export async function getStaticProps(context) {
 }
 
 export const data = [
-  <button className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full">
+  <a
+    href="/post/dnotes"
+    className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full"
+  >
     <img src="dnotes.png" className="h-[30px]"></img>
     <div className="text-white text-md text-center font-black ">dNotes</div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Hackathon
     </div>
-  </button>,
-  <button className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+  </a>,
+  <a
+    href="/post/fireplace"
+    className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
+  >
     <img src="fireplace/fireplace.svg" className="h-[50px]"></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Fireplace
@@ -40,15 +46,21 @@ export const data = [
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Co-Founder
     </div>
-  </button>,
-  <button className="flex flex-col aspect-square bg-white h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+  </a>,
+  <a
+    href="/post/scout"
+    className="flex flex-col aspect-square bg-white h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
+  >
     <img src="scout/scoutjustlogo.png" className="h-[50px]"></img>
     <div className="text-black text-md mt-2 text-center font-black ">Scout</div>
     <div className="text-black text-[10px] text-center font-black opacity-50">
       Project Lead
     </div>
-  </button>,
-  <button className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full">
+  </a>,
+  <a
+    href="/post/connect-grid"
+    className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full"
+  >
     <img
       src="connect-grid/connectgrid.ico"
       className="h-[50px] bg-black p-1 rounded-md"
@@ -59,8 +71,11 @@ export const data = [
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Sports Trivia
     </div>
-  </button>,
-  <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
+  </a>,
+  <a
+    href="/post/cactivate"
+    className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
+  >
     <img src="cactivate/cactivate.svg" className="h-[50px] rounded-full"></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Cactivate
@@ -68,7 +83,7 @@ export const data = [
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Software Dev
     </div>
-  </button>,
+  </a>,
   // <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
   //   <img src="cactivate.svg" className="h-[50px] rounded-full"></img>
   //   <div className="text-white text-md mt-2 text-center font-black ">
@@ -115,7 +130,7 @@ export default function Home({ updatesSliced }) {
         <div className=" content-center fadeInLeft-animation">
           <div className="sm:max-w-[800px] max-w-[550px] mt-10">
             <div className="md:mb-10 mb-8">
-              <div className="text-3xl md:text-[55px] sm:text-4xl max-w-2xl">
+              <div className="text-3xl md:text-6xl sm:text-4xl max-w-2xl">
                 <ReactRotatingText
                   items={["Hello!", "Hallo!", "Hola!", "Ciao!"]}
                 />
@@ -125,8 +140,8 @@ export default function Home({ updatesSliced }) {
                 </b>
               </div>
             </div>
-            <div className="break-words">
-              <div className="mb-3 max-w-xl leading-relaxed">
+            <div className="break-words text-lg">
+              <div className="mb-3 max-w-xl  leading-relaxed">
                 I'm a software engineer{" "}
                 <ExternalLink
                   href={"https://www.northeastern.edu"}

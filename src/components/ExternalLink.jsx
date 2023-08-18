@@ -5,7 +5,7 @@ export function ExternalLink({ href, title }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        class="underline transition-all underline-offset-2 hover:underline-offset-4 "
+        class="underline transition-all underline-offset-4 hover:underline-offset-[6px] "
       >
         {title}
       </a>
