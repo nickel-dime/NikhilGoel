@@ -5,6 +5,7 @@ import BubbleElement from "./test";
 import Updates from "@/components/Updates";
 import { getUpdates } from "../../sanity/queries/update";
 import { ExternalLink } from "@/components/ExternalLink";
+import Image from "next/image";
 
 export async function getStaticProps(context) {
   const updates = await getUpdates();

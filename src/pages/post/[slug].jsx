@@ -5,24 +5,10 @@ import { useRouter } from "next/router";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import { PostHeader } from "@/components/PostHeader";
+import { components } from "../../../sanity/serializer";
 
 const Post = ({ project }) => {
   const router = useRouter();
-
-  const components = {
-    block: {
-      // Ex. 1: customizing common block types
-      h1: ({ children }) => <h1 className="text-2xl">{children}</h1>,
-      blockquote: ({ children }) => (
-        <blockquote className="border-l-purple-500">{children}</blockquote>
-      ),
-
-      // Ex. 2: rendering custom styles
-      customHeading: ({ children }) => (
-        <h2 className="text-lg text-primary text-purple-700">{children}</h2>
-      ),
-    },
-  };
 
   return (
     <>
@@ -33,14 +19,40 @@ const Post = ({ project }) => {
         <link rel="icon" href="/ndimelogo.png" />
       </Head>
       <Container>
-        <article>
-          <PostHeader></PostHeader>
-          <PortableText value={project.content} components={components} />
+        <article className="">
+          <div className=" flex  mt-10">
+            <PostHeader
+              headline={project.headline}
+              description={project.short_description}
+            ></PostHeader>
+          </div>
+          <div className="float-right mt-10 ml-4 mb-4 max-w-[200px] ">
+            <Descriptor
+              name="Timeline"
+              value={project.specificTimeline}
+            ></Descriptor>
+            <Descriptor name="Tools" value={project.tools}></Descriptor>
+            <Descriptor name="Role" value={project.role}></Descriptor>
+          </div>
+          <div className="mt-10 gap-6 mb-8 clear-left">
+            <div className="">
+              <PortableText value={project.content} components={components} />
+            </div>
+          </div>
         </article>
       </Container>
     </>
   );
 };
+
+function Descriptor({ name, value }) {
+  return (
+    <div className="flex flex-col">
+      <div className=" font-bold">{name}</div>
+      <div className="">{value}</div>
+    </div>
+  );
+}
 
 export async function getStaticPaths() {
   const paths = await client.fetch(

@@ -89,7 +89,14 @@ const project = {
       title: "Conent",
       type: "array",
       of: [
-        { type: "block" },
+        {
+          type: "block",
+          of: [
+            {
+              type: "image",
+            },
+          ],
+        },
         {
           type: "image",
         },
