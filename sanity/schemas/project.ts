@@ -94,11 +94,25 @@ const project = {
           of: [
             {
               type: "image",
+              fields: [
+                {
+                  name: "caption",
+                  type: "string",
+                  title: "Caption",
+                },
+              ],
             },
           ],
         },
         {
           type: "image",
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption",
+            },
+          ],
         },
       ],
     },
