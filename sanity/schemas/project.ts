@@ -88,7 +88,32 @@ const project = {
       name: "content",
       title: "Conent",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+        },
+      ],
+    },
+    {
+      name: "headline",
+      title: "Headline",
+      type: "string",
+    },
+    {
+      name: "specificTimeline",
+      title: "Specific Timeline",
+      type: "string",
+    },
+    {
+      name: "tools",
+      title: "Tools Used",
+      type: "string",
+    },
+    {
+      name: "role",
+      title: "Role",
+      type: "string",
     },
   ],
   orderings: [

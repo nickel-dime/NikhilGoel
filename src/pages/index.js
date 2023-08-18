@@ -4,6 +4,7 @@ var ReactRotatingText = require("react-rotating-text");
 import BubbleElement from "./test";
 import Updates from "@/components/Updates";
 import { getUpdates } from "../../sanity/queries/update";
+import { ExternalLink } from "@/components/ExternalLink";
 
 export async function getStaticProps(context) {
   const updates = await getUpdates();
@@ -126,82 +127,40 @@ export default function Home({ updatesSliced }) {
             <div className="break-words">
               <div className="mb-3 max-w-xl leading-relaxed">
                 I'm a software engineer{" "}
-                <span>
-                  <a
-                    href="https://www.northeastern.edu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Northeastern
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>{" "}
-                staring my fourth year. I'm passionate about building human
+                <ExternalLink
+                  href={"https://www.northeastern.edu"}
+                  title={"@Northeastern"}
+                ></ExternalLink>{" "}
+                starting my fourth year. I'm passionate about building human
                 centered interfaces. Feel free to email me at any time, I'm
                 always happy to chat at a coffee shop! <br></br>
               </div>
               <div className="max-w-xl mt-6">
                 Currently Co-Founder{" "}
-                <span>
-                  <a
-                    href="https://www.makefireplace.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Fireplace
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>
+                <ExternalLink
+                  href={"https://www.makefireplace.com"}
+                  title={"@Fireplace"}
+                ></ExternalLink>
                 . Previously Developer{" "}
-                <span>
-                  <a
-                    href="https://www.cactivate.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Cactivate
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>
+                <ExternalLink
+                  href={"https://www.cactivate.com/"}
+                  title={"@Cactivate"}
+                ></ExternalLink>
                 , Project Lead{" "}
-                <span>
-                  <a
-                    href="https://scout.camd.northeastern.edu/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Scout
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>
+                <ExternalLink
+                  href={"https://scout.camd.northeastern.edu/"}
+                  title={"@Scout"}
+                ></ExternalLink>
                 , Intern{" "}
-                <span>
-                  <a
-                    href="https://www.gotbot.co.za/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @GotBot
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>
+                <ExternalLink
+                  href={"https://www.gotbot.co.za/"}
+                  title={"@GotBot"}
+                ></ExternalLink>
                 ,{" &"} Intern{" "}
-                <span>
-                  <a
-                    href="https://ceibal.edu.uy/en/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline transition-all text-primaryText"
-                  >
-                    @Plan Ceibal
-                  </a>
-                  <span class="bottom-[-0.1em] relative ml-0.5">↗&#xFE0E;</span>
-                </span>
+                <ExternalLink
+                  href={"https://ceibal.edu.uy/en/"}
+                  title={"@Plan Ceibal"}
+                ></ExternalLink>
                 .
               </div>
             </div>

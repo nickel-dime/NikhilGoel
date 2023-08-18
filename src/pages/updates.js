@@ -48,6 +48,7 @@ export default function UpdatesPage({ updates }) {
                 text={update.update}
                 date={update.date}
                 category={update.category}
+                url={update.url}
               ></Update>
             ))}
           </div>

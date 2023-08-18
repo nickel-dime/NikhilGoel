@@ -15,11 +15,16 @@ export const categoryToIcon = {
   update: <MdBolt className=" fill-yellow-600"></MdBolt>,
 };
 
-export function Update({ text, category, date }) {
+export function Update({ text, category, date, url }) {
   // bg-gradient-to-r from-[#A1CCD1] to-[#35be63]
   return (
     <>
-      <button className="flex sm:items-center sm:space-x-4 justify-between sm:hover:bg-[#e3d5b3] p-2 sm:rounded-md">
+      <a
+        href={url}
+        className={`flex sm:items-center sm:space-x-4 justify-between ${
+          url ? "sm:hover:bg-[#e3d5b3]" : ""
+        } p-2 sm:rounded-md`}
+      >
         <div className="sm:flex-none font-medium">
           <div className="flex align-middle justify-center sm:items-center">
             <div className="mt-1 sm:mt-0">{categoryToIcon[category]}</div>
@@ -36,7 +41,7 @@ export function Update({ text, category, date }) {
         <div className="flex-none font-mono text-quaternary text-xs sm:text-sm pl-1">
           {date}
         </div>
-      </button>
+      </a>
     </>
   );
 }
