@@ -24,6 +24,7 @@ const Post = ({ project }) => {
             <PostHeader
               headline={project.headline}
               description={project.short_description}
+              slug={project.slug}
             ></PostHeader>
           </div>
           <div
@@ -77,8 +78,6 @@ export async function getStaticProps(context) {
   `,
     { slug }
   );
-
-  console.log(project);
 
   return {
     props: {

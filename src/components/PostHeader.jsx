@@ -1,12 +1,13 @@
 import Image from "next/image";
 
-export function PostHeader({ headline, description }) {
+export function PostHeader({ headline, description, slug }) {
   return (
     <div className="flex flex-col gap-4">
       <Image
-        src={"/connect-grid/hidef.gif"}
+        src={`/${slug.current}/hires`}
         width={0}
         height={0}
+        alt={headline}
         sizes="100vw"
         style={{ width: "100%", height: "auto" }}
         className="rounded-md"

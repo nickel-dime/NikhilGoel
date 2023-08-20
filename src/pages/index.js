@@ -227,9 +227,5 @@ export default function Home({ updatesSliced }) {
 }
 
 function Child({ data }) {
-  return (
-    <div className="childComponent" onClick={() => console.log(data)}>
-      {data}
-    </div>
-  );
+  return <div className="childComponent">{data}</div>;
 }
