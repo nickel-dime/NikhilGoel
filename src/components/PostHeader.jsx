@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { ExternalLink } from "./ExternalLink";
 
-export function PostHeader({ headline, description, slug }) {
+export function PostHeader({ headline, description, slug, github }) {
   return (
     <div className="flex flex-col gap-4">
       <Image
@@ -13,7 +14,16 @@ export function PostHeader({ headline, description, slug }) {
         className="rounded-md"
       ></Image>
       <div className=" text-5xl font-semibold">{headline}</div>
-      <div className=" text-lg text-gray-600">{description}</div>
+      <div className=" text-lg text-gray-600">
+        <div>{description}</div>
+        {github && (
+          <div className="text-base text-black">
+            <ExternalLink href={github}>
+              Check out the Github here!
+            </ExternalLink>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

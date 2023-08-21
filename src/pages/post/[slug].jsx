@@ -6,9 +6,17 @@ import { client } from "../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import { PostHeader } from "@/components/PostHeader";
 import { components } from "../../../sanity/serializer";
+import { useEffect } from "react";
+
+import { GrGithub } from "react-icons/gr";
+import { ExternalLink } from "@/components/ExternalLink";
 
 const Post = ({ project }) => {
   const router = useRouter();
+
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
 
   return (
     <>
@@ -19,26 +27,29 @@ const Post = ({ project }) => {
         <link rel="icon" href="/ndimelogo.png" />
       </Head>
       <Container>
-        <article className="">
+        <article className="fadeInUp-animation">
           <div className=" flex mt-10">
             <PostHeader
               headline={project.headline}
               description={project.short_description}
               slug={project.slug}
+              github={project.github}
             ></PostHeader>
           </div>
           <div
             className="float-right mt-10 ml-5 mb-4 max-w-[200px] rounded-md p-5 "
             style={{ backgroundColor: project.pastel_color }}
           >
-            <Descriptor
-              name="Timeline"
-              value={project.specificTimeline}
-            ></Descriptor>
-            <Descriptor name="Tools" value={project.tools}></Descriptor>
-            <Descriptor name="Role" value={project.role}></Descriptor>
+            <Descriptor name="Timeline">{project.specificTimeline}</Descriptor>
+            <Descriptor name="Tools">{project.tools}</Descriptor>
+            <Descriptor name="Role">{project.role}</Descriptor>
+            {project.url && (
+              <Descriptor name="Link">
+                <ExternalLink href={project.url}>Check it out!</ExternalLink>
+              </Descriptor>
+            )}
           </div>
-          <div className="mt-10 gap-6 mb-8 clear-left">
+          <div className="mt-6 gap-6 mb-8 clear-left">
             <div className="">
               <PortableText value={project.content} components={components} />
             </div>
@@ -49,11 +60,11 @@ const Post = ({ project }) => {
   );
 };
 
-function Descriptor({ name, value }) {
+function Descriptor({ name, children }) {
   return (
     <div className="flex flex-col">
       <div className=" font-bold">{name}</div>
-      <div className="">{value}</div>
+      <div className="">{children}</div>
     </div>
   );
 }

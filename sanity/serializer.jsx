@@ -12,25 +12,41 @@ const SampleImageComponent = ({ value, isInline }) => {
   const builder = urlBuilder(client);
   const { width, height } = getImageDimensions(value);
   return (
-    <div className="float-right " style={{ marginLeft: "25px" }}>
+    <div
+      className=" "
+      style={{
+        marginLeft: isInline ? "25px" : "0px",
+        float: isInline ? "right" : "none",
+      }}
+    >
       <img
         src={builder
           .image(value)
-          .width(isInline ? 100 : 800)
+          .width(isInline ? 300 : 800)
           .auto("format")
           .url()}
         alt={value.alt || " "}
         loading="lazy"
-        className="rounded-md mt-5"
+        className="rounded-md"
         style={{
           // Display alongside text if image appears inside a block text span
           display: isInline ? "inline-block" : "block",
+          marginTop: isInline ? "20px" : "0px",
 
           // Avoid jumping around with aspect-ratio CSS property
           aspectRatio: width / height,
         }}
       ></img>
-      <div className=" text-gray-600 text-sm mt-2">{value.caption || ""}</div>
+      <div
+        style={{
+          marginTop: isInline ? "8px" : "8px",
+          marginBottom: isInline ? "" : "16px",
+          width: isInline ? "300px" : "",
+        }}
+        className=" text-gray-600 text-sm"
+      >
+        {value.caption || ""}
+      </div>
     </div>
   );
 };
@@ -47,15 +63,15 @@ export const components = {
         {children}
       </ul>
     ),
-    number: ({ children }) => <ol className=" list-disc">{children}</ol>,
+    number: ({ children }) => <ol className="list-disc mb-4">{children}</ol>,
 
     // Ex. 2: rendering custom lists
     checkmarks: ({ children }) => (
-      <ol className="m-auto text-lg">{children}</ol>
+      <ol className="m-auto text-base">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="text-lg py-2">{children}</li>,
+    bullet: ({ children }) => <li className="text-base py-2">{children}</li>,
   },
   types: {
     image: SampleImageComponent,
@@ -90,7 +106,7 @@ export const components = {
       </div>
     ),
     normal: ({ children }) => (
-      <div className=" mb-4 text-lg" style={{ lineHeight: 1.75 }}>
+      <div className=" mb-4 text-base" style={{ lineHeight: 1.75 }}>
         {children}
       </div>
     ),
@@ -100,7 +116,7 @@ export const components = {
       const rel = !value.href.startsWith("/")
         ? "noreferrer noopener"
         : undefined;
-      return <ExternalLink href={value.href} title={children}></ExternalLink>;
+      return <ExternalLink href={value.href}>{children}</ExternalLink>;
     },
   },
 };

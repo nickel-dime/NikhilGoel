@@ -85,6 +85,11 @@ const project = {
       type: "url",
     },
     {
+      name: "github",
+      title: "Github",
+      type: "url",
+    },
+    {
       name: "ordering",
       title: "ordering",
       type: "number",

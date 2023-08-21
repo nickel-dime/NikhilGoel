@@ -40,9 +40,9 @@ export default function Projects({ prevURL = null, projects }) {
               ? ""
               : router.query["ref"].includes("updates")
               ? "fadeInLeft-animation"
-              : router.query["ref"].includes("project")
-              ? ""
-              : "fadeInRight-animation"
+              : router.query["ref"] == ""
+              ? "fadeInRight-animation"
+              : "fadeInUp-animation"
           }`}
         >
           <div className="mt-10 text-4xl font-bold">Projects</div>

@@ -143,40 +143,34 @@ export default function Home({ updatesSliced }) {
             <div className="break-words text-lg">
               <div className="mb-3 max-w-xl  leading-relaxed">
                 I'm a software engineer{" "}
-                <ExternalLink
-                  href={"https://www.northeastern.edu"}
-                  title={"@Northeastern"}
-                ></ExternalLink>{" "}
+                <ExternalLink href={"https://www.northeastern.edu"}>
+                  @Northeastern
+                </ExternalLink>{" "}
                 starting my fourth year. I'm passionate about building human
                 centered interfaces. Feel free to email me at any time, I'm
                 always happy to chat at a coffee shop! <br></br>
               </div>
               <div className="max-w-xl mt-6">
                 Currently Co-Founder{" "}
-                <ExternalLink
-                  href={"https://www.makefireplace.com"}
-                  title={"@Fireplace"}
-                ></ExternalLink>
+                <ExternalLink href={"https://www.makefireplace.com"}>
+                  @Fireplace
+                </ExternalLink>
                 . Previously Developer{" "}
-                <ExternalLink
-                  href={"https://www.cactivate.com/"}
-                  title={"@Cactivate"}
-                ></ExternalLink>
+                <ExternalLink href={"https://www.cactivate.com/"}>
+                  @Cactivate
+                </ExternalLink>
                 , Project Lead{" "}
-                <ExternalLink
-                  href={"https://scout.camd.northeastern.edu/"}
-                  title={"@Scout"}
-                ></ExternalLink>
+                <ExternalLink href={"https://scout.camd.northeastern.edu/"}>
+                  @Scout
+                </ExternalLink>
                 , Intern{" "}
-                <ExternalLink
-                  href={"https://www.gotbot.co.za/"}
-                  title={"@GotBot"}
-                ></ExternalLink>
+                <ExternalLink href={"https://www.gotbot.co.za/"}>
+                  @GotBot
+                </ExternalLink>
                 ,{" &"} Intern{" "}
-                <ExternalLink
-                  href={"https://ceibal.edu.uy/en/"}
-                  title={"@Plan Ceibal"}
-                ></ExternalLink>
+                <ExternalLink href={"https://ceibal.edu.uy/en/"}>
+                  @Plan Ceibal
+                </ExternalLink>
                 .
               </div>
             </div>
