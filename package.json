@@ -16,6 +16,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/vision": "^3.15.1",
+    "@vercel/analytics": "^1.0.2",
     "clsx": "^1.2.1",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
