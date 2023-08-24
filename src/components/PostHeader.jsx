@@ -5,10 +5,11 @@ export function PostHeader({ headline, description, slug, github }) {
   return (
     <div className="flex flex-col gap-4">
       <Image
-        src={`/${slug.current}/hires`}
+        src={`/${slug.current}/hires.gif`}
         width={0}
         height={0}
         alt={headline}
+        loading={"eager"}
         sizes="100vw"
         style={{ width: "100%", height: "auto" }}
         className="rounded-md"
