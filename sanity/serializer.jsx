@@ -71,7 +71,7 @@ export const components = {
     ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="text-base py-2">{children}</li>,
+    bullet: ({ children }) => <li className="text-base py-1">{children}</li>,
   },
   types: {
     image: SampleImageComponent,
@@ -96,7 +96,7 @@ export const components = {
     // Ex. 1: customizing common block types
     h1: ({ children }) => <div className="text-5xl">{children}</div>,
     h2: ({ children }) => (
-      <div className="font-semibold tracking-tight text-3xl mt-1 mb-1">
+      <div className="font-semibold tracking-tight text-3xl mt-4 mb-1">
         {children}
       </div>
     ),

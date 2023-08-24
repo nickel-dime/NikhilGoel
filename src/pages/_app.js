@@ -17,6 +17,10 @@ export default function App({ Component, pageProps }) {
 
   const router = useRouter();
 
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   if (router.pathname.includes("studio")) {
     return (
       <>

@@ -14,10 +14,6 @@ import { ExternalLink } from "@/components/ExternalLink";
 const Post = ({ project }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    window.history.scrollRestoration = "manual";
-  }, []);
-
   return (
     <>
       <Head>

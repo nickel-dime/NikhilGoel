@@ -142,7 +142,7 @@ export default function Home({ updatesSliced }) {
             </div>
             <div className="break-words text-lg">
               <div className="mb-3 max-w-xl  leading-relaxed">
-                I'm a software engineer{" "}
+                I'm a software engineer and student{" "}
                 <ExternalLink href={"https://www.northeastern.edu"}>
                   @Northeastern
                 </ExternalLink>{" "}
