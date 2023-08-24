@@ -4,7 +4,7 @@ import { ExternalLink } from "./ExternalLink";
 export function PostHeader({ headline, description, slug, github }) {
   return (
     <div className="flex flex-col gap-4">
-      <Image
+      <img
         src={`/${slug.current}/hires.gif`}
         width={0}
         height={0}
@@ -13,7 +13,7 @@ export function PostHeader({ headline, description, slug, github }) {
         sizes="100vw"
         style={{ width: "100%", height: "auto" }}
         className="rounded-md"
-      ></Image>
+      ></img>
       <div className=" text-5xl font-semibold">{headline}</div>
       <div className=" text-lg text-gray-600">
         <div>{description}</div>
