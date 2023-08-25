@@ -24,7 +24,7 @@ const Post = ({ project }) => {
       </Head>
       <Container>
         <article className="fadeInUp-animation">
-          <div className=" flex mt-10">
+          <div className="flex mt-10">
             <PostHeader
               headline={project.headline}
               description={project.short_description}
@@ -33,7 +33,7 @@ const Post = ({ project }) => {
             ></PostHeader>
           </div>
           <div
-            className="float-right mt-10 ml-5 mb-4 max-w-[200px] rounded-md p-5 "
+            className="sm:float-right mb-3 mt-6 sm:mt-10 sm:ml-5 sm:mb-4 sm:max-w-[200px] rounded-md  p-5 "
             style={{ backgroundColor: project.pastel_color }}
           >
             <Descriptor name="Timeline">{project.specificTimeline}</Descriptor>

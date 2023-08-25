@@ -13,10 +13,10 @@ const SampleImageComponent = ({ value, isInline }) => {
   const { width, height } = getImageDimensions(value);
   return (
     <div
-      className=" "
+      className={`${isInline ? "sm:float-right" : "float-none"}`}
       style={{
         marginLeft: isInline ? "25px" : "0px",
-        float: isInline ? "right" : "none",
+        // float: isInline ? "right" : "none",
       }}
     >
       <img
