@@ -45,7 +45,8 @@ export default function Card({ project }) {
           ></img>
         </div>
       </a>
-      <div
+      <a
+        href={`/post/${project.slug.current}`}
         className="flex sm:hidden flex-col rounded-md"
         style={{ backgroundColor: project.pastel_color }}
       >
@@ -80,7 +81,7 @@ export default function Card({ project }) {
         <div className=" p-4 rounded-md">
           <img className="rounded-md" src={project.gif_image}></img>
         </div>
-      </div>
+      </a>
     </>
   );
 }
