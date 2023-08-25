@@ -31,7 +31,7 @@ const SampleImageComponent = ({ value, isInline }) => {
         style={{
           // Display alongside text if image appears inside a block text span
           display: isInline ? "inline-block" : "block",
-          marginTop: isInline ? "20px" : "0px",
+          marginTop: isInline ? "20px" : "5px",
 
           // Avoid jumping around with aspect-ratio CSS property
           aspectRatio: width / height,
