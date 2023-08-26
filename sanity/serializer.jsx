@@ -31,7 +31,7 @@ const SampleImageComponent = ({ value, isInline }) => {
         style={{
           // Display alongside text if image appears inside a block text span
           display: isInline ? "inline-block" : "block",
-          marginTop: isInline ? "20px" : "5px",
+          marginTop: isInline ? "20px" : "12px",
 
           // Avoid jumping around with aspect-ratio CSS property
           aspectRatio: width / height,
@@ -40,7 +40,7 @@ const SampleImageComponent = ({ value, isInline }) => {
       <div
         style={{
           marginTop: isInline ? "8px" : "8px",
-          marginBottom: isInline ? "" : "16px",
+          marginBottom: isInline ? "" : "12px",
           width: isInline ? "300px" : "",
         }}
         className=" text-gray-600 text-sm"
@@ -55,9 +55,10 @@ export const components = {
   list: {
     bullet: ({ children }) => (
       <ul
-        className=" list-decimal ml-3"
+        className=" list-decimal"
         style={{
           listStyle: "disc",
+          marginLeft: "16px",
         }}
       >
         {children}
@@ -96,12 +97,12 @@ export const components = {
     // Ex. 1: customizing common block types
     h1: ({ children }) => <div className="text-5xl">{children}</div>,
     h2: ({ children }) => (
-      <div className="font-semibold tracking-tight text-3xl mt-4 mb-1">
+      <div className="font-semibold tracking-tight text-3xl mt-4 mb-3">
         {children}
       </div>
     ),
     h3: ({ children }) => (
-      <div className="font-semibold tracking-tight text-xl mb-1">
+      <div className="font-semibold tracking-tight text-xl mb-1 mt-1">
         {children}
       </div>
     ),
