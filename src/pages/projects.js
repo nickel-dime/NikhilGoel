@@ -28,7 +28,7 @@ export default function Projects({ prevURL = null, projects }) {
   return (
     <>
       <Head>
-        <title>Nikhil Goel</title>
+        <title>Sharanya Shanthan</title>
         <meta name="description" content="Personal website for Nikhil Goel" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/ndimelogo.png" />
