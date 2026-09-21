@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 
 export const categoryToIcon = {
-  project: <MdCode MdCode className=" fill-rose-800"></MdCode>,
+  project: <MdCode className=" fill-rose-800"></MdCode>,
   travel: <MdPublic className=" fill-cyan-800"></MdPublic>,
   work: <MdWork className=" fill-lime-800"></MdWork>,
   blog: <MdRssFeed className=" fill-sky-500"></MdRssFeed>,

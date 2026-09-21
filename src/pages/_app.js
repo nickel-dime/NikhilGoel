@@ -40,6 +40,17 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  // A page can opt out of the site chrome (header, footer, page background) by
+  // exporting `getLayout`. Used by /wardrobe, which stands on its own.
+  if (Component.getLayout) {
+    return (
+      <>
+        {Component.getLayout(<Component {...pageProps} />)}
+        <Analytics />
+      </>
+    );
+  }
+
   return (
     <>
       {/* <div id="globalLoader">
