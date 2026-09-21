@@ -6,6 +6,7 @@ import Updates from "@/components/Updates";
 import { getUpdates } from "../../sanity/queries/update";
 import { ExternalLink } from "@/components/ExternalLink";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function getStaticProps(context) {
   const updates = await getUpdates();
@@ -25,44 +26,49 @@ export async function getStaticProps(context) {
 }
 
 export const data = [
-  <a
+  <Link
+    key="dnotes"
     href="/post/dnotes"
     className="flex flex-col aspect-square bg-[#4A154B] h-36 hover:bg-opacity-70 items-center justify-center p-8 rounded-full"
   >
-    <img src="dnotes.png" className="h-[30px]"></img>
+    <img src="dnotes.png" alt="" className="h-[30px]"></img>
     <div className="text-white text-md text-center font-black ">dNotes</div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Hackathon
     </div>
-  </a>,
-  <a
+  </Link>,
+  <Link
+    key="fireplace"
     href="/post/fireplace"
     className="flex flex-col aspect-square bg-[#f3592a] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
   >
-    <img src="fireplace/fireplace.svg" className="h-[50px]"></img>
+    <img src="fireplace/fireplace.svg" alt="" className="h-[50px]"></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Fireplace
     </div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Co-Founder
     </div>
-  </a>,
-  <a
+  </Link>,
+  <Link
+    key="scout"
     href="/post/scout"
     className="flex flex-col aspect-square bg-white h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
   >
-    <img src="scout/scoutjustlogo.png" className="h-[50px]"></img>
+    <img src="scout/scoutjustlogo.png" alt="" className="h-[50px]"></img>
     <div className="text-black text-md mt-2 text-center font-black ">Scout</div>
     <div className="text-black text-[10px] text-center font-black opacity-50">
       Project Lead
     </div>
-  </a>,
-  <a
+  </Link>,
+  <Link
+    key="connect-grid"
     href="/post/connect-grid"
     className="flex flex-col aspect-square bg-[#0C6B58] hover:bg-opacity-80 h-36 items-center justify-center p-8 rounded-full"
   >
     <img
       src="connect-grid/connectgrid.ico"
+      alt=""
       className="h-[50px] bg-black p-1 rounded-md"
     ></img>
     <div className="text-white text-[12px] mt-2 text-center font-black ">
@@ -71,19 +77,24 @@ export const data = [
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Sports Trivia
     </div>
-  </a>,
-  <a
+  </Link>,
+  <Link
+    key="cactivate"
     href="/post/cactivate"
     className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full"
   >
-    <img src="cactivate/cactivate.svg" className="h-[50px] rounded-full"></img>
+    <img
+      src="cactivate/cactivate.svg"
+      alt=""
+      className="h-[50px] rounded-full"
+    ></img>
     <div className="text-white text-md mt-2 text-center font-black ">
       Cactivate
     </div>
     <div className="text-white text-[10px] text-center font-black opacity-50">
       Software Dev
     </div>
-  </a>,
+  </Link>,
   // <button className="flex flex-col aspect-square bg-[#01b97d] h-36 hover:bg-opacity-80 items-center justify-center p-8 rounded-full">
   //   <img src="cactivate.svg" className="h-[50px] rounded-full"></img>
   //   <div className="text-white text-md mt-2 text-center font-black ">
@@ -142,13 +153,13 @@ export default function Home({ updatesSliced }) {
             </div>
             <div className="break-words text-lg">
               <div className="mb-3 max-w-xl  leading-relaxed">
-                I'm a software engineer and student{" "}
+                I&apos;m a software engineer and student{" "}
                 <ExternalLink href={"https://www.northeastern.edu"}>
                   @Northeastern
                 </ExternalLink>{" "}
-                starting my fourth year. I'm passionate about building human
-                centered interfaces. Feel free to email me at any time, I'm
-                always happy to chat at a coffee shop! <br></br>
+                starting my fourth year. I&apos;m passionate about building
+                human centered interfaces. Feel free to email me at any time,
+                I&apos;m always happy to chat at a coffee shop! <br></br>
               </div>
               <div className="max-w-xl mt-6">
                 Currently Co-Founder{" "}
@@ -177,7 +188,7 @@ export default function Home({ updatesSliced }) {
             <div className="flex sm:flex-row flex-col gap-5 pb-4 sm:pb-0">
               <div className=" basis-1/2">
                 <div className="">
-                  <a
+                  <Link
                     href="/projects"
                     className="mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
                   >
@@ -185,7 +196,7 @@ export default function Home({ updatesSliced }) {
                     <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
                       &#x2192;
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="mt-5 mb-3 bg-slate-700 rounded-lg backdrop-blur-lg">
@@ -196,7 +207,7 @@ export default function Home({ updatesSliced }) {
               </div>
               <div className="basis-1/2">
                 <div className="">
-                  <a
+                  <Link
                     href="/updates"
                     className="sm:mt-10 w-fit font-semibold text-xl flex align-middle items-center group"
                   >
@@ -204,7 +215,7 @@ export default function Home({ updatesSliced }) {
                     <div className="ml-1 align-middle transition-all ease-in-out duration-100 group-hover:ml-2 font-cursive justify-center items-center h-full">
                       &#x2192;
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 <div className="mt-5 mb-3 bg-white text-black rounded-lg">
                   <div className="h-[300px] px-4 overflow-auto">

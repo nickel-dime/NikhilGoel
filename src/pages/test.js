@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useCallback, useRef, useState, useLayoutEffect } from "react";
 
 function _extends() {
   _extends =
@@ -51,6 +51,12 @@ function BubbleElement(props) {
     return null;
   }
 
+  return /*#__PURE__*/ React.createElement(BubbleGrid, props);
+}
+
+// Split from BubbleElement so the hooks below always run unconditionally;
+// the `props.children` guard above must not sit before a hook call.
+function BubbleGrid(props) {
   var options = {};
   Object.assign(options, defaultOptions);
   Object.assign(options, props.options);
@@ -92,20 +98,15 @@ function BubbleElement(props) {
     }
   }
 
-  var _useState = useState(0),
-    scrollTop = _useState[0],
-    setScrollTop = _useState[1];
+  var [scrollTop, setScrollTop] = useState(0);
+  var [scrollLeft, setScrollLeft] = useState(0);
 
-  var _useState2 = useState(0),
-    scrollLeft = _useState2[0],
-    setScrollLeft = _useState2[1];
-
-  var handleScroll = function handleScroll(e) {
+  var handleScroll = useCallback(function handleScroll(e) {
     if (e.target.className) {
       setScrollTop(e.target.scrollTop);
       setScrollLeft(e.target.scrollLeft);
     }
-  };
+  }, []);
 
   useLayoutEffect(function () {
     window.addEventListener("scroll", handleScroll);
@@ -116,7 +117,7 @@ function BubbleElement(props) {
     return function () {
       return window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   var interpolate = function interpolate(
     actualMin,

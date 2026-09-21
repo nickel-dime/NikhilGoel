@@ -15,16 +15,6 @@ export default function App({ Component, pageProps }) {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const arraySrcs = [
-      "connect-grid/hires.gif",
-      "dnotes/hires.gif",
-      "cactivate/hires.gif",
-    ];
-
-    arraySrcs.map((e) => <img src={e} style={{ display: "none" }} />);
-  }, []);
-
   const router = useRouter();
 
   useEffect(() => {

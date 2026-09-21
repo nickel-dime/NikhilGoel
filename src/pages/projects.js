@@ -47,7 +47,8 @@ export default function Projects({ prevURL = null, projects }) {
         >
           <div className="mt-10 text-4xl font-bold">Projects</div>
           <div className="">
-            A collection of projects I've designed, prototyped and developed.
+            A collection of projects I&apos;ve designed, prototyped and
+            developed.
           </div>
           <div className="mt-3 grid-cols-1 grid gap-8 mb-10">
             {projects.map((project) => (

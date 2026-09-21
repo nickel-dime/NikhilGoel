@@ -1,6 +1,8 @@
 import coreWebVitals from "eslint-config-next/core-web-vitals";
 
-export default [
+const config = [
   { ignores: [".next/**", "node_modules/**", ".sanity/**"] },
   ...coreWebVitals,
 ];
+
+export default config;

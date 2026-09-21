@@ -42,6 +42,7 @@ export default function Card({ project }) {
           <img
             className="sm:group-hover:scale-105 -rotate-[6deg] scale-125 rounded-md sm:scale-100 transition-all duration-200 ease-in-out"
             src={project.gif_image}
+            alt=""
           ></img>
         </div>
       </a>
@@ -79,7 +80,7 @@ export default function Card({ project }) {
           </div>
         </button>
         <div className=" p-4 rounded-md">
-          <img className="rounded-md" src={project.gif_image}></img>
+          <img className="rounded-md" src={project.gif_image} alt=""></img>
         </div>
       </a>
     </>
