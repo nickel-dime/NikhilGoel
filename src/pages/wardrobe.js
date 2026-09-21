@@ -126,33 +126,45 @@ export default function WardrobePage({ items, occasions }) {
           </p>
         </header>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2">
-          {occasions.length > 0 ? (
-            <>
-              <Chip
-                active={activeOccasion === null}
-                onClick={() => setActiveOccasion(null)}
-              >
-                Everything
-              </Chip>
-              {occasions.map((occasion) => (
+        {items.length > 0 ? (
+          <div className="mt-8 flex flex-wrap items-center gap-2">
+            {occasions.length > 0 ? (
+              <>
                 <Chip
-                  key={occasion.slug}
-                  active={activeOccasion === occasion.slug}
-                  onClick={() => setActiveOccasion(occasion.slug)}
+                  active={activeOccasion === null}
+                  onClick={() => setActiveOccasion(null)}
                 >
-                  {occasion.name}
+                  Everything
                 </Chip>
-              ))}
-            </>
-          ) : null}
-          <span className="ml-auto text-xs text-neutral-400">
-            {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
-          </span>
-        </div>
+                {occasions.map((occasion) => (
+                  <Chip
+                    key={occasion.slug}
+                    active={activeOccasion === occasion.slug}
+                    onClick={() => setActiveOccasion(occasion.slug)}
+                  >
+                    {occasion.name}
+                  </Chip>
+                ))}
+              </>
+            ) : null}
+            {/* Only meaningful once there is something to count. */}
+            {filtered.length > 0 ? (
+              <span className="ml-auto text-xs text-neutral-400">
+                {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
+              </span>
+            ) : null}
+          </div>
+        ) : null}
 
         {grouped.length === 0 ? (
-          <p className="mt-16 text-sm text-neutral-400">Nothing here yet.</p>
+          <p className="mt-16 text-sm text-neutral-400">
+            {items.length === 0
+              ? "Still photographing. Check back."
+              : `Nothing tagged ${
+                  occasions.find((o) => o.slug === activeOccasion)?.name ??
+                  "that"
+                } yet.`}
+          </p>
         ) : (
           <div className="mt-12 flex flex-col gap-16">
             {grouped.map((category) => (
