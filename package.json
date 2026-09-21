@@ -6,36 +6,33 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
-    "@heroicons/react": "^2.0.13",
-    "@next/font": "13.1.1",
-    "@portabletext/react": "^3.0.4",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/orderable-document-list": "^1.1.0",
-    "@sanity/vision": "^3.15.1",
-    "@vercel/analytics": "^1.0.2",
-    "clsx": "^1.2.1",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.1.1",
+    "@headlessui/react": "^2.2.10",
+    "@heroicons/react": "^2.2.0",
+    "@portabletext/react": "^8.0.1",
+    "@sanity/asset-utils": "^2.3.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.15.0",
+    "@vercel/analytics": "^2.0.1",
+    "clsx": "^2.1.1",
     "get-youtube-id": "^1.0.1",
-    "next": "13.1.1",
-    "next-sanity": "^5.2.7",
-    "next-sanity-image": "^6.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.10.1",
-    "react-lite-youtube-embed": "^2.3.52",
+    "next": "^16.3.5",
+    "next-sanity": "^13.3.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0",
+    "react-lite-youtube-embed": "^3.7.0",
     "react-rotating-text": "^1.4.1",
-    "sanity": "^3.15.1",
-    "sanity-plugin-icon-picker": "^3.2.2",
-    "styled-components": "5.2"
+    "sanity": "^6.15.0",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4"
+    "autoprefixer": "^10.6.1",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "^16.3.5",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.17"
   }
 }

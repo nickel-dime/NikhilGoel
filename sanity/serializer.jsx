@@ -1,4 +1,4 @@
-import urlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder as urlBuilder } from "@sanity/image-url";
 import { getImageDimensions } from "@sanity/asset-utils";
 import Image from "next/image";
 import { client } from "./lib/client";
