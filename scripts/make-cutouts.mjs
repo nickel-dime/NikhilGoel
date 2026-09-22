@@ -103,11 +103,33 @@ const items = done.map(
 
 writeFileSync(itemsPath, `${JSON.stringify(items, null, 2)}\n`);
 
+// Describing each piece in a sentence is less work than filling in JSON, so
+// scaffold that file too and let describe-wardrobe.mjs do the structuring.
+const descPath = path.join(outputDir, "descriptions.txt");
+const alreadyDescribed = new Set();
+let descBody = "";
+if (existsSync(descPath)) {
+  const { readFileSync } = await import("node:fs");
+  descBody = readFileSync(descPath, "utf8").replace(/\n*$/, "\n");
+  for (const line of descBody.split("\n")) {
+    const key = line.split(":")[0].trim();
+    if (key && !key.startsWith("#")) alreadyDescribed.add(key);
+  }
+} else {
+  descBody =
+    "# One line per piece: <name>: brand, then how you'd describe it.\n" +
+    "#   IMG_2199: dimers washed khaki cargo pants, weekend, https://shop.com/x\n" +
+    "# Anything you leave blank stays blank. Then run describe-wardrobe.mjs.\n\n";
+}
+
+const added = done.map(({ base }) => base).filter((base) => !alreadyDescribed.has(base));
+if (added.length) {
+  writeFileSync(descPath, descBody + added.map((base) => `${base}: `).join("\n") + "\n");
+}
+
 console.log(
   `\n${done.length} cutout${done.length === 1 ? "" : "s"} written to ${outputDir}` +
     (failed.length ? `, ${failed.length} failed` : "")
 );
-console.log(`Scaffolded ${itemsPath} — fill in brand and category, then:`);
-console.log(
-  `  node --env-file=.env.local scripts/import-wardrobe.mjs ${outputDir} --dry-run`
-);
+console.log(`Describe each piece in ${descPath}, then:`);
+console.log(`  node scripts/describe-wardrobe.mjs ${outputDir}`);

@@ -105,6 +105,9 @@ for (const item of items) {
   }
 
   const slug = item.slug || slugify(label);
+  // Keyed on the photo, not the name, so correcting a brand or name updates the
+  // piece in place instead of leaving the old document behind as a duplicate.
+  const id = `wardrobeItem-${slugify(path.basename(item.file, path.extname(item.file)))}`;
   const filePath = path.join(rootDir, item.file);
 
   if (dryRun) {
@@ -120,7 +123,7 @@ for (const item of items) {
   );
 
   await client.createOrReplace({
-    _id: `wardrobeItem-${slug}`,
+    _id: id,
     _type: "wardrobeItem",
     name: item.name,
     brand: item.brand,
