@@ -12,6 +12,12 @@ export const wardrobeCategories = [
   { title: "Accessories", value: "accessories" },
 ];
 
+export const wardrobeSeasons = [
+  { title: "Warm weather", value: "warm" },
+  { title: "Cold weather", value: "cold" },
+  { title: "Year-round", value: "year-round" },
+];
+
 const wardrobeItem = {
   name: "wardrobeItem",
   title: "Wardrobe",
@@ -60,6 +66,15 @@ const wardrobeItem = {
       name: "colorway",
       title: "Colorway",
       type: "string",
+    },
+    {
+      name: "season",
+      title: "Season",
+      type: "string",
+      description: "When it gets worn. Short sleeves and shorts are warm; knits and long sleeves are cold.",
+      options: {
+        list: wardrobeSeasons,
+      },
     },
     {
       name: "occasions",

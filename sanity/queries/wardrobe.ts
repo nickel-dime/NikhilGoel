@@ -9,6 +9,7 @@ export async function getWardrobe() {
     brand,
     category,
     colorway,
+    season,
     image,
     "occasions": occasions[]->{ "slug": slug.current, name },
     source

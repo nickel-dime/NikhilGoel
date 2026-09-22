@@ -18,6 +18,11 @@ const CATEGORY_ORDER = [
   { value: "accessories", title: "Accessories" },
 ];
 
+const SEASONS = [
+  { value: "warm", title: "Warm weather" },
+  { value: "cold", title: "Cold weather" },
+];
+
 export async function getStaticProps() {
   const [items, occasions] = await Promise.all([getWardrobe(), getOccasions()]);
 
@@ -107,6 +112,7 @@ function Detail({ item, onClose }) {
   const facts = [
     ["Category", item.category],
     ["Colour", item.colorway],
+    ["Season", item.season?.replace("-", " ")],
     ["Wear it", (item.occasions || []).map((o) => o?.name).filter(Boolean).join(", ")],
   ].filter(([, value]) => value);
 
@@ -179,14 +185,20 @@ function Detail({ item, onClose }) {
 
 export default function WardrobePage({ items, occasions }) {
   const [activeOccasion, setActiveOccasion] = useState(null);
+  const [activeSeason, setActiveSeason] = useState(null);
   const [open, setOpen] = useState(null);
 
   const filtered = useMemo(() => {
-    if (!activeOccasion) return items;
-    return items.filter((item) =>
-      (item.occasions || []).some((o) => o?.slug === activeOccasion)
+    return items.filter(
+      (item) =>
+        (!activeOccasion ||
+          (item.occasions || []).some((o) => o?.slug === activeOccasion)) &&
+        // Year-round pieces belong to every season.
+        (!activeSeason ||
+          item.season === activeSeason ||
+          item.season === "year-round")
     );
-  }, [items, activeOccasion]);
+  }, [items, activeOccasion, activeSeason]);
 
   const grouped = useMemo(() => groupByCategory(filtered), [filtered]);
 
@@ -228,6 +240,17 @@ export default function WardrobePage({ items, occasions }) {
                 ))}
               </>
             ) : null}
+            {SEASONS.map((season) => (
+              <Chip
+                key={season.value}
+                active={activeSeason === season.value}
+                onClick={() =>
+                  setActiveSeason(activeSeason === season.value ? null : season.value)
+                }
+              >
+                {season.title}
+              </Chip>
+            ))}
             {/* Only meaningful once there is something to count. */}
             {filtered.length > 0 ? (
               <span className="ml-auto text-xs text-neutral-400">
@@ -241,10 +264,7 @@ export default function WardrobePage({ items, occasions }) {
           <p className="mt-16 text-sm text-neutral-400">
             {items.length === 0
               ? "Still photographing. Check back."
-              : `Nothing tagged ${
-                  occasions.find((o) => o.slug === activeOccasion)?.name ??
-                  "that"
-                } yet.`}
+              : "Nothing matches that yet."}
           </p>
         ) : (
           <div className="mt-12 flex flex-col gap-16">

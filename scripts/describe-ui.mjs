@@ -41,6 +41,7 @@ const CATEGORY_GUIDE = {
 };
 const CATEGORIES = ["", ...Object.keys(CATEGORY_GUIDE)];
 const OCCASIONS = ["Office", "Weekend", "Formal", "Gym", "Travel", "Going out"];
+const SEASONS = ["warm", "cold", "year-round"];
 
 const PARSE_SCHEMA = {
   type: "object",
@@ -52,13 +53,14 @@ const PARSE_SCHEMA = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["file", "brand", "name", "category", "colorway", "occasions", "url", "status"],
+        required: ["file", "brand", "name", "category", "colorway", "season", "occasions", "url", "status"],
         properties: {
           file: { type: "string" },
           brand: { type: "string" },
           name: { type: "string" },
           category: { type: "string", enum: Object.keys(CATEGORY_GUIDE) },
           colorway: { type: "string" },
+          season: { type: "string", enum: SEASONS },
           occasions: { type: "array", items: { type: "string", enum: OCCASIONS } },
           url: { type: "string" },
           status: { type: "string", enum: ["available", "sold-out", "secondhand"] },
@@ -89,6 +91,11 @@ Rules:
 ${Object.entries(CATEGORY_GUIDE).map(([k, v]) => `  ${k}: ${v}`).join("\n")}
   The word "fitness" or "gym" in a sentence means activewear. Any team jersey is jerseys, even if athletic.
 - colorway: one or two plain colour words as a shopper would say them ("Khaki", "Navy", "Heather grey").
+- season: "warm" for short sleeves, tanks, shorts, linen, jerseys; "cold" for long sleeves, sweaters,
+  hoodies, quarter-zips, flannel, heavy outerwear; "year-round" for pants, jeans, joggers, and anything
+  that works in either. Judge from the garment described, not the occasion.
+- Each entry may carry "current" values the owner already set by hand. Keep current.brand and
+  current.category exactly as given unless the sentence flatly contradicts them; fill everything else fresh.
 - occasions: zero or more of ${JSON.stringify(OCCASIONS)}. "fitness"/"gym"/"running" -> Gym. Only when
   the sentence implies it; otherwise [].
 - url: any http(s) link in the sentence, else "".
@@ -197,7 +204,11 @@ const server = http.createServer(async (req, res) => {
     writeDescriptions(descriptions);
     const items = readItems();
     const rows = items
-      .map((item) => ({ file: item.file, sentence: descriptions[base(item.file)] ?? "" }))
+      .map((item) => ({
+        file: item.file,
+        sentence: descriptions[base(item.file)] ?? "",
+        current: { brand: item.brand || "", category: item.category || "" },
+      }))
       .filter(({ file, sentence }) => {
         const item = items.find((it) => it.file === file);
         const incomplete = !item.brand || !item.name || !item.category;
@@ -274,6 +285,7 @@ const PAGE = /* html */ `<!doctype html>
 <div id="list"></div>
 <script>
 const CATEGORIES = ${JSON.stringify(CATEGORIES)};
+const SEASONS = ${JSON.stringify(SEASONS)};
 let items = [];
 const status = (t, ok) => { const s = document.getElementById("status"); s.textContent = t; s.className = "status" + (ok ? " saved" : ""); };
 
@@ -292,6 +304,7 @@ function render() {
           <label>Name<input data-k="name" class="\${it.name ? "" : "missing"}" value="\${esc(it.name)}"></label>
           <label>Category<select data-k="category" class="\${it.category ? "" : "missing"}">\${CATEGORIES.map(c => \`<option \${c === it.category ? "selected" : ""}>\${c}</option>\`).join("")}</select></label>
           <label>Colorway<input data-k="colorway" value="\${esc(it.colorway)}"></label>
+          <label>Season<select data-k="season">\${["", ...SEASONS].map(c => \`<option \${c === (it.season || "") ? "selected" : ""}>\${c}</option>\`).join("")}</select></label>
           <label>Occasions (comma-separated)<input data-k="occasions" value="\${esc((it.occasions || []).join(", "))}"></label>
           <label>Retailer<input data-k="source.retailer" value="\${esc(it.source?.retailer)}"></label>
           <label>URL<input data-k="source.url" value="\${esc(it.source?.url)}"></label>

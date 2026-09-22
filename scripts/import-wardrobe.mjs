@@ -131,6 +131,7 @@ for (const item of items) {
     category: item.category,
     image: { _type: "image", asset: { _type: "reference", _ref: asset._id } },
     ...(item.colorway ? { colorway: item.colorway } : {}),
+    ...(item.season ? { season: item.season } : {}),
     ...(item.occasions?.length
       ? { occasions: await resolveOccasions(item.occasions) }
       : {}),
