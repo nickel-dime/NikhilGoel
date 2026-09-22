@@ -3,14 +3,23 @@ import { MdOutlineStyle } from "react-icons/md";
 // Ordered by body position, which is how the wardrobe page groups the grid.
 export const wardrobeCategories = [
   { title: "Tops", value: "tops" },
-  { title: "Sweatshirts", value: "sweatshirts" },
-  { title: "Jerseys", value: "jerseys" },
-  { title: "Activewear", value: "activewear" },
+  { title: "Layers", value: "layers" },
   { title: "Bottoms", value: "bottoms" },
   { title: "Outerwear", value: "outerwear" },
   { title: "Footwear", value: "footwear" },
   { title: "Accessories", value: "accessories" },
 ];
+
+// What the garment is, one level below category. Category answers "where on
+// the body", type answers "what kind"; use (gym, office) lives in occasions.
+export const wardrobeTypes = {
+  tops: ["T-shirt", "Long-sleeve tee", "Polo", "Henley", "Tank", "Shirt", "Jersey"],
+  layers: ["Sweater", "Hoodie", "Sweatshirt", "Quarter-zip", "Cardigan"],
+  bottoms: ["Jeans", "Trousers", "Cargo pants", "Joggers", "Shorts", "Athletic shorts"],
+  outerwear: ["Jacket", "Coat", "Vest", "Overshirt"],
+  footwear: ["Sneakers", "Boots", "Loafers", "Sandals"],
+  accessories: ["Hat", "Belt", "Bag", "Socks"],
+};
 
 export const wardrobeSeasons = [
   { title: "Warm weather", value: "warm" },
@@ -50,6 +59,17 @@ const wardrobeItem = {
       type: "string",
       options: {
         list: wardrobeCategories,
+      },
+    },
+    {
+      name: "type",
+      title: "Type",
+      type: "string",
+      description: "What kind of garment, within its category.",
+      options: {
+        list: Object.entries(wardrobeTypes).flatMap(([category, types]) =>
+          types.map((type) => ({ title: `${type} (${category})`, value: type }))
+        ),
       },
     },
     {

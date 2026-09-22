@@ -30,15 +30,22 @@ if (!existsSync(itemsPath)) {
 
 // Mirrors sanity/schemas/wardrobeItem.ts. Definitions are what the model reads.
 const CATEGORY_GUIDE = {
-  tops: "everyday shirts: tees, polos, henleys, button-ups, tanks, knit tops that are not sweatshirts",
-  sweatshirts: "hoodies, crewneck sweatshirts, quarter-zips, fleece pullovers",
-  jerseys: "team sports jerseys and replica kits: football/soccer, basketball, baseball",
-  activewear: "technical workout clothing worn to train: running shorts, performance tees, joggers, gym tanks",
-  bottoms: "everyday pants, jeans, chinos, cargos, casual shorts",
+  tops: "anything worn on the torso as the main layer: tees, polos, henleys, tanks, button-up shirts, sports jerseys",
+  layers: "warm layers worn over a top: sweaters, hoodies, sweatshirts, quarter-zips, cardigans",
+  bottoms: "everything worn on the legs: jeans, trousers, cargos, joggers, shorts of any kind",
   outerwear: "jackets, coats, vests, overshirts",
   footwear: "shoes",
   accessories: "hats, belts, bags, socks, jewellery",
 };
+const TYPES = {
+  tops: ["T-shirt", "Long-sleeve tee", "Polo", "Henley", "Tank", "Shirt", "Jersey"],
+  layers: ["Sweater", "Hoodie", "Sweatshirt", "Quarter-zip", "Cardigan"],
+  bottoms: ["Jeans", "Trousers", "Cargo pants", "Joggers", "Shorts", "Athletic shorts"],
+  outerwear: ["Jacket", "Coat", "Vest", "Overshirt"],
+  footwear: ["Sneakers", "Boots", "Loafers", "Sandals"],
+  accessories: ["Hat", "Belt", "Bag", "Socks"],
+};
+const ALL_TYPES = Object.values(TYPES).flat();
 const CATEGORIES = ["", ...Object.keys(CATEGORY_GUIDE)];
 const OCCASIONS = ["Office", "Weekend", "Formal", "Gym", "Travel", "Going out"];
 const SEASONS = ["warm", "cold", "year-round"];
@@ -53,12 +60,13 @@ const PARSE_SCHEMA = {
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["file", "brand", "name", "category", "colorway", "season", "occasions", "url", "status"],
+        required: ["file", "brand", "name", "category", "type", "colorway", "season", "occasions", "url", "status"],
         properties: {
           file: { type: "string" },
           brand: { type: "string" },
           name: { type: "string" },
           category: { type: "string", enum: Object.keys(CATEGORY_GUIDE) },
+          type: { type: "string", enum: ALL_TYPES },
           colorway: { type: "string" },
           season: { type: "string", enum: SEASONS },
           occasions: { type: "array", items: { type: "string", enum: OCCASIONS } },
@@ -89,13 +97,19 @@ Rules:
   (wash, cut, print) and drop filler.
 - category: exactly one of ${JSON.stringify(Object.keys(CATEGORY_GUIDE))}. Guide:
 ${Object.entries(CATEGORY_GUIDE).map(([k, v]) => `  ${k}: ${v}`).join("\n")}
-  The word "fitness" or "gym" in a sentence means activewear. Any team jersey is jerseys, even if athletic.
+  Workout clothing is NOT its own category: a performance tee is tops, running shorts are bottoms; the
+  Gym occasion carries that meaning. Team jerseys and replica kits are tops.
+- type: exactly one of the types allowed for the chosen category:
+${Object.entries(TYPES).map(([k, v]) => `  ${k}: ${v.join(", ")}`).join("\n")}
+  "Shirt" means a button-up. Any sports jersey or replica kit is "Jersey". Workout/running/technical
+  shorts are "Athletic shorts"; casual, linen or drawstring cotton shorts are "Shorts". Sweatpants are "Joggers".
 - colorway: one or two plain colour words as a shopper would say them ("Khaki", "Navy", "Heather grey").
 - season: "warm" for short sleeves, tanks, shorts, linen, jerseys; "cold" for long sleeves, sweaters,
   hoodies, quarter-zips, flannel, heavy outerwear; "year-round" for pants, jeans, joggers, and anything
   that works in either. Judge from the garment described, not the occasion.
-- Each entry may carry "current" values the owner already set by hand. Keep current.brand and
-  current.category exactly as given unless the sentence flatly contradicts them; fill everything else fresh.
+- Each entry may carry "current" values the owner already set by hand. Keep current.brand exactly as given
+  unless the sentence flatly contradicts it. Keep current.category and current.type when they are valid
+  values from the lists above and fit the garment; otherwise choose fresh. Fill everything else fresh.
 - occasions: zero or more of ${JSON.stringify(OCCASIONS)}. "fitness"/"gym"/"running" -> Gym. Only when
   the sentence implies it; otherwise [].
 - url: any http(s) link in the sentence, else "".
@@ -207,11 +221,11 @@ const server = http.createServer(async (req, res) => {
       .map((item) => ({
         file: item.file,
         sentence: descriptions[base(item.file)] ?? "",
-        current: { brand: item.brand || "", category: item.category || "" },
+        current: { brand: item.brand || "", category: item.category || "", type: item.type || "" },
       }))
       .filter(({ file, sentence }) => {
         const item = items.find((it) => it.file === file);
-        const incomplete = !item.brand || !item.name || !item.category;
+        const incomplete = !item.brand || !item.name || !item.category || !item.type;
         return sentence && (force || incomplete || sentence !== item.parsedFrom);
       });
     if (rows.length === 0) return json(res, { items: state(), parsed: 0 });
@@ -286,6 +300,8 @@ const PAGE = /* html */ `<!doctype html>
 <script>
 const CATEGORIES = ${JSON.stringify(CATEGORIES)};
 const SEASONS = ${JSON.stringify(SEASONS)};
+const TYPES = ${JSON.stringify(TYPES)};
+const ALL_TYPES = Object.values(TYPES).flat();
 let items = [];
 const status = (t, ok) => { const s = document.getElementById("status"); s.textContent = t; s.className = "status" + (ok ? " saved" : ""); };
 
@@ -303,6 +319,7 @@ function render() {
           <label>Brand<input data-k="brand" class="\${it.brand ? "" : "missing"}" value="\${esc(it.brand)}"></label>
           <label>Name<input data-k="name" class="\${it.name ? "" : "missing"}" value="\${esc(it.name)}"></label>
           <label>Category<select data-k="category" class="\${it.category ? "" : "missing"}">\${CATEGORIES.map(c => \`<option \${c === it.category ? "selected" : ""}>\${c}</option>\`).join("")}</select></label>
+          <label>Type<select data-k="type" class="\${it.type ? "" : "missing"}">\${["", ...(TYPES[it.category] || ALL_TYPES)].map(c => \`<option \${c === (it.type || "") ? "selected" : ""}>\${c}</option>\`).join("")}</select></label>
           <label>Colorway<input data-k="colorway" value="\${esc(it.colorway)}"></label>
           <label>Season<select data-k="season">\${["", ...SEASONS].map(c => \`<option \${c === (it.season || "") ? "selected" : ""}>\${c}</option>\`).join("")}</select></label>
           <label>Occasions (comma-separated)<input data-k="occasions" value="\${esc((it.occasions || []).join(", "))}"></label>
@@ -336,7 +353,8 @@ document.getElementById("list").addEventListener("change", async (e) => {
   const it = collect(row);
   items[+row.dataset.i] = it;
   await fetch("/api/save", { method: "POST", body: JSON.stringify(it) });
-  e.target.classList.toggle("missing", ["brand","name","category"].includes(e.target.dataset.k) && !e.target.value);
+  e.target.classList.toggle("missing", ["brand","name","category","type"].includes(e.target.dataset.k) && !e.target.value);
+  if (e.target.dataset.k === "category") render();
   status("Saved " + it.file, true);
 });
 
@@ -354,9 +372,9 @@ async function parse(force) {
     if (!res.ok) return status("Parse failed: " + data.error);
     items = data.items;
     render();
-    const gaps = items.filter(it => !it.brand || !it.name || !it.category).length;
+    const gaps = items.filter(it => !it.brand || !it.name || !it.category || !it.type).length;
     status((data.parsed ? "Parsed " + data.parsed + " piece(s). " : "Nothing changed. ") +
-      (gaps ? gaps + " still missing brand, name or category (highlighted)." : "All pieces complete. Ready to import."), !gaps);
+      (gaps ? gaps + " still missing brand, name, category or type (highlighted)." : "All pieces complete. Ready to import."), !gaps);
   } finally {
     for (const b of document.querySelectorAll(".top button")) b.disabled = false;
   }

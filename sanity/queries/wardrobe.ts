@@ -8,6 +8,7 @@ export async function getWardrobe() {
     name,
     brand,
     category,
+    type,
     colorway,
     season,
     image,

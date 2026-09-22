@@ -27,7 +27,7 @@ import { createReadStream } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-const CATEGORIES = ["tops", "sweatshirts", "jerseys", "activewear", "bottoms", "outerwear", "footwear", "accessories"];
+const CATEGORIES = ["tops", "layers", "bottoms", "outerwear", "footwear", "accessories"];
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -132,6 +132,7 @@ for (const item of items) {
     image: { _type: "image", asset: { _type: "reference", _ref: asset._id } },
     ...(item.colorway ? { colorway: item.colorway } : {}),
     ...(item.season ? { season: item.season } : {}),
+    ...(item.type ? { type: item.type } : {}),
     ...(item.occasions?.length
       ? { occasions: await resolveOccasions(item.occasions) }
       : {}),

@@ -9,14 +9,30 @@ import { urlForImage } from "../../sanity/lib/image";
 // adding one in Sanity does not require a code change to show up.
 const CATEGORY_ORDER = [
   { value: "tops", title: "Tops" },
-  { value: "sweatshirts", title: "Sweatshirts" },
-  { value: "jerseys", title: "Jerseys" },
-  { value: "activewear", title: "Activewear" },
+  { value: "layers", title: "Layers" },
   { value: "bottoms", title: "Bottoms" },
   { value: "outerwear", title: "Outerwear" },
   { value: "footwear", title: "Footwear" },
   { value: "accessories", title: "Accessories" },
 ];
+
+// Type order within a section, lightest to heaviest. Unknown types sort last.
+const TYPE_ORDER = [
+  "Tank", "T-shirt", "Jersey", "Polo", "Henley", "Long-sleeve tee", "Shirt",
+  "Sweatshirt", "Hoodie", "Quarter-zip", "Sweater", "Cardigan",
+  "Athletic shorts", "Shorts", "Joggers", "Jeans", "Cargo pants", "Trousers",
+  "Overshirt", "Vest", "Jacket", "Coat",
+  "Sneakers", "Sandals", "Loafers", "Boots",
+  "Hat", "Belt", "Bag", "Socks",
+];
+const typeRank = (type) => {
+  const index = TYPE_ORDER.indexOf(type);
+  return index < 0 ? TYPE_ORDER.length : index;
+};
+
+// A section only earns its own type chips once it has enough pieces for
+// narrowing to help.
+const TYPE_CHIPS_FROM = 8;
 
 const SEASONS = [
   { value: "warm", title: "Warm weather" },
@@ -50,7 +66,13 @@ function groupByCategory(items) {
   return [...CATEGORY_ORDER, ...extras]
     .map((category) => ({
       ...category,
-      items: items.filter((item) => item.category === category.value),
+      items: items
+        .filter((item) => item.category === category.value)
+        .sort(
+          (a, b) =>
+            typeRank(a.type) - typeRank(b.type) ||
+            (a.brand || "").localeCompare(b.brand || "")
+        ),
     }))
     .filter((category) => category.items.length > 0);
 }
@@ -90,6 +112,9 @@ function Piece({ item, onOpen }) {
       </div>
       <div className="mt-3 text-xs font-medium text-neutral-900">
         {item.brand}
+        {item.type ? (
+          <span className="font-normal text-neutral-400"> · {item.type}</span>
+        ) : null}
       </div>
       <div className="text-xs text-neutral-500">{item.name}</div>
     </button>
@@ -110,7 +135,7 @@ function Detail({ item, onClose }) {
   const retailer = item.source?.retailer || item.brand;
   const soldOut = item.source?.status === "sold-out";
   const facts = [
-    ["Category", item.category],
+    ["Type", item.type],
     ["Colour", item.colorway],
     ["Season", item.season?.replace("-", " ")],
     ["Wear it", (item.occasions || []).map((o) => o?.name).filter(Boolean).join(", ")],
@@ -180,6 +205,48 @@ function Detail({ item, onClose }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function Section({ category, onOpen }) {
+  const [activeType, setActiveType] = useState(null);
+  const types = [...new Set(category.items.map((i) => i.type).filter(Boolean))];
+  const showChips = category.items.length >= TYPE_CHIPS_FROM && types.length > 1;
+  const visible = activeType
+    ? category.items.filter((item) => item.type === activeType)
+    : category.items;
+
+  return (
+    <section>
+      <div className="flex flex-wrap items-baseline gap-x-6 gap-y-3">
+        <h2 className="text-xs uppercase tracking-[0.18em] text-neutral-400">
+          {category.title}
+        </h2>
+        {showChips ? (
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+            {types.map((type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => setActiveType(activeType === type ? null : type)}
+                className={`transition-colors ${
+                  activeType === type
+                    ? "text-neutral-900 underline underline-offset-4"
+                    : "text-neutral-400 hover:text-neutral-900"
+                }`}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        {visible.map((item) => (
+          <Piece key={item.id} item={item} onOpen={onOpen} />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -269,16 +336,7 @@ export default function WardrobePage({ items, occasions }) {
         ) : (
           <div className="mt-12 flex flex-col gap-16">
             {grouped.map((category) => (
-              <section key={category.value}>
-                <h2 className="text-xs uppercase tracking-[0.18em] text-neutral-400">
-                  {category.title}
-                </h2>
-                <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
-                  {category.items.map((item) => (
-                    <Piece key={item.id} item={item} onOpen={setOpen} />
-                  ))}
-                </div>
-              </section>
+              <Section key={category.value} category={category} onOpen={setOpen} />
             ))}
           </div>
         )}
