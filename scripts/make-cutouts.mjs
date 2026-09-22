@@ -16,9 +16,16 @@ import os from "node:os";
 
 const READABLE = new Set([".jpg", ".jpeg", ".png", ".heic", ".heif", ".tiff", ".webp"]);
 
-const [inputDir, outputDir] = process.argv.slice(2);
+const argv = process.argv.slice(2);
+// Vision sometimes counts a shadow cast on the surface under the garment as
+// part of the garment. This removes it, but judges by colour, so it must not be
+// used on grey, white or black pieces.
+const dropNeutral = argv.includes("--drop-neutral");
+const [inputDir, outputDir] = argv.filter((a) => !a.startsWith("--"));
 if (!inputDir || !outputDir) {
-  console.error("Usage: node scripts/make-cutouts.mjs <photo-dir> <output-dir>");
+  console.error(
+    "Usage: node scripts/make-cutouts.mjs <photo-dir> <output-dir> [--drop-neutral]"
+  );
   process.exit(1);
 }
 
@@ -54,7 +61,12 @@ for (const photo of photos) {
     const result = execFileSync(
       binary,
       [path.join(inputDir, photo), path.join(outputDir, out)],
-      { encoding: "utf8" }
+      {
+        encoding: "utf8",
+        env: dropNeutral
+          ? { ...process.env, CUTOUT_DROP_NEUTRAL: "1" }
+          : process.env,
+      }
     );
     process.stdout.write(`  ${result}`);
     done.push({ file: out, base });
