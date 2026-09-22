@@ -27,7 +27,7 @@ import { createReadStream } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-const CATEGORIES = ["tops", "bottoms", "outerwear", "footwear", "accessories"];
+const CATEGORIES = ["tops", "sweatshirts", "jerseys", "activewear", "bottoms", "outerwear", "footwear", "accessories"];
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");

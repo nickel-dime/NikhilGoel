@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { getOccasions, getWardrobe } from "../../sanity/queries/wardrobe";
 import { urlForImage } from "../../sanity/lib/image";
 
@@ -9,6 +9,9 @@ import { urlForImage } from "../../sanity/lib/image";
 // adding one in Sanity does not require a code change to show up.
 const CATEGORY_ORDER = [
   { value: "tops", title: "Tops" },
+  { value: "sweatshirts", title: "Sweatshirts" },
+  { value: "jerseys", title: "Jerseys" },
+  { value: "activewear", title: "Activewear" },
   { value: "bottoms", title: "Bottoms" },
   { value: "outerwear", title: "Outerwear" },
   { value: "footwear", title: "Footwear" },
@@ -62,12 +65,13 @@ function Chip({ active, children, onClick }) {
   );
 }
 
-function Piece({ item }) {
-  const retailer = item.source?.retailer || item.brand;
-  const soldOut = item.source?.status === "sold-out";
-
+function Piece({ item, onOpen }) {
   return (
-    <div className="group flex flex-col">
+    <button
+      type="button"
+      onClick={() => onOpen(item)}
+      className="group flex flex-col text-left"
+    >
       <div className="relative aspect-square">
         {item.imageUrl ? (
           <Image
@@ -83,22 +87,99 @@ function Piece({ item }) {
         {item.brand}
       </div>
       <div className="text-xs text-neutral-500">{item.name}</div>
-      {item.source?.url ? (
-        <a
-          href={item.source.url}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-1 text-xs text-neutral-400 underline decoration-neutral-300 underline-offset-4 transition-opacity duration-200 hover:text-neutral-900 focus:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
-        >
-          {soldOut ? `${retailer} — sold out` : retailer} ↗
-        </a>
-      ) : null}
+    </button>
+  );
+}
+
+// Studio deep link, so fixing a typo is one click from the piece itself. The
+// Studio is behind Sanity's own login, so this is safe to show to everyone.
+const studioUrl = (item) => `/studio/structure/wardrobeItem;${item.id}`;
+
+function Detail({ item, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  const retailer = item.source?.retailer || item.brand;
+  const soldOut = item.source?.status === "sold-out";
+  const facts = [
+    ["Category", item.category],
+    ["Colour", item.colorway],
+    ["Wear it", (item.occasions || []).map((o) => o?.name).filter(Boolean).join(", ")],
+  ].filter(([, value]) => value);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-neutral-900/30 p-4 sm:items-center"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-xl sm:flex sm:gap-8 sm:p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="relative aspect-square w-full sm:w-72 sm:shrink-0">
+          {item.imageUrl ? (
+            <Image
+              src={item.imageUrl}
+              alt={[item.brand, item.name].filter(Boolean).join(" ")}
+              fill
+              sizes="(max-width: 640px) 90vw, 288px"
+              className="object-contain"
+            />
+          ) : null}
+        </div>
+        <div className="mt-6 flex flex-1 flex-col sm:mt-0">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <div className="text-sm font-medium text-neutral-900">{item.brand}</div>
+              <div className="text-sm text-neutral-500">{item.name}</div>
+            </div>
+            <a
+              href={studioUrl(item)}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-neutral-300 px-2.5 py-0.5 text-[11px] text-neutral-500 transition-colors hover:border-neutral-900 hover:text-neutral-900"
+            >
+              Edit
+            </a>
+          </div>
+          <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-xs">
+            {facts.map(([label, value]) => (
+              <Fragment key={label}>
+                <dt className="uppercase tracking-[0.14em] text-neutral-400">{label}</dt>
+                <dd className="capitalize text-neutral-700">{value}</dd>
+              </Fragment>
+            ))}
+          </dl>
+          <div className="mt-auto pt-8 text-xs">
+            {item.source?.url ? (
+              <a
+                href={item.source.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-neutral-500 underline decoration-neutral-300 underline-offset-4 hover:text-neutral-900"
+              >
+                {soldOut ? `${retailer} — sold out` : `Buy from ${retailer}`} ↗
+              </a>
+            ) : (
+              <span className="text-neutral-400">
+                {soldOut ? `${retailer} — sold out` : retailer}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function WardrobePage({ items, occasions }) {
   const [activeOccasion, setActiveOccasion] = useState(null);
+  const [open, setOpen] = useState(null);
 
   const filtered = useMemo(() => {
     if (!activeOccasion) return items;
@@ -174,7 +255,7 @@ export default function WardrobePage({ items, occasions }) {
                 </h2>
                 <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
                   {category.items.map((item) => (
-                    <Piece key={item.id} item={item} />
+                    <Piece key={item.id} item={item} onOpen={setOpen} />
                   ))}
                 </div>
               </section>
@@ -182,6 +263,8 @@ export default function WardrobePage({ items, occasions }) {
           </div>
         )}
       </div>
+
+      {open ? <Detail item={open} onClose={() => setOpen(null)} /> : null}
     </>
   );
 }

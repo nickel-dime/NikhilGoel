@@ -3,6 +3,9 @@ import { MdOutlineStyle } from "react-icons/md";
 // Ordered by body position, which is how the wardrobe page groups the grid.
 export const wardrobeCategories = [
   { title: "Tops", value: "tops" },
+  { title: "Sweatshirts", value: "sweatshirts" },
+  { title: "Jerseys", value: "jerseys" },
+  { title: "Activewear", value: "activewear" },
   { title: "Bottoms", value: "bottoms" },
   { title: "Outerwear", value: "outerwear" },
   { title: "Footwear", value: "footwear" },
